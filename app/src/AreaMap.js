@@ -1,32 +1,64 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-require('dotenv/config');
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class AreaMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 47.60,
-      lng: -122.33,
-    },
-    zoom: 11
-  };
+  constructor() {
+    super()
+    this.state = {
+      longitude: null,
+      latitude: null,
+      zoom: 11,
+    }
+  }
+
+  componentDidMount() {
+    this.getLocation();
+  }
+
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const longitude = position.coords.longitude;
+        const latitude = position.coords.latitude;
+        this.setState({longitude, latitude})
+        console.log(`longitude: ${ this.state.longitude } | latitude: ${ this.state.latitude }`);
+      });
+    } else {
+      console.log('error with navigator');
+    }
+
+
+  }
 
   render() {
-    console.log(process.env.GOOG_API);
+    if(this.state.latitude === null || this.state.longitude === null) {
+      return(
+        <div>
+          loading
+        </div>
+      )
+    }
+    const props = {
+      center: {
+        lat: this.state.latitude,
+        lng: this.state.longitude,
+      },
+      zoom: this.state.zoom,
+    }
+    const PositionMarker = ({ text }) => <div>{text}</div>;
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyAOnWbA4sdxRvMQWHg_AzoJwB9MBmfe2Qo' }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
+          defaultCenter={props.center}
+          defaultZoom={props.zoom}
         >
-          <AnyReactComponent
-            lat={47.608013}
-            lng={-122.335167}
-            text='Dis U'
+          <PositionMarker
+            lat={this.state.latitude}
+            lng={this.state.longitude}
+            text="Dis U"
           />
         </GoogleMapReact>
       </div>
