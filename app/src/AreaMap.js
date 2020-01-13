@@ -25,13 +25,10 @@ class AreaMap extends Component {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
         this.setState({longitude, latitude})
-        console.log(`longitude: ${ this.state.longitude } | latitude: ${ this.state.latitude }`);
       });
     } else {
       console.log('error with navigator');
     }
-
-
   }
 
   render() {
