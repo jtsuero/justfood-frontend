@@ -56,26 +56,16 @@ class AreaMap extends Component {
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyAOnWbA4sdxRvMQWHg_AzoJwB9MBmfe2Qo' }}
-          defaultCenter={props.center}
-          defaultZoom={props.zoom}
-        >
-          <PositionMarker
-            lat={this.state.latitude}
-            lng={this.state.longitude}
-            text="Dis U"
-          />
+        <GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyAOnWbA4sdxRvMQWHg_AzoJwB9MBmfe2Qo' }} defaultCenter={props.center} defaultZoom={props.zoom}>
+          <PositionMarker lat={this.state.latitude} lng={this.state.longitude} text="Dis U" />
           {this.state.businessList.map((restaurant, index) => {
-            console.log(restaurant);
             return (
-              <Icons
-                key={index}
-                lat={restaurant.coordinates.latitude}
-                lng={restaurant.coordinates.longitude}
-                text={restaurant.photos[0]} />
+              <Icons key={index} lat={restaurant.coordinates.latitude} lng={restaurant.coordinates.longitude} data={restaurant} />
             )
           })}
+        {/* <button> */}
+        {/*   Find More Food */}
+        {/* </button> */}
         </GoogleMapReact>
       </div>
     );
