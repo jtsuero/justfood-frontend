@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import AreaMap from './AreaMap.js';
+import BottomBar from './BottomBar.js';
 
-function App() {
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentBusiness: null,
+    };
+  }
+
+  onPhotoClick = (newBusiness) => {
+    this.setState({currentBusiness: newBusiness});
+  }
+
+  render() {
   return (
-    <div>
-      <AreaMap />
+    <div className='main-container'>
+      <AreaMap clickPhoto={this.onPhotoClick.bind(this)}/>
+      <BottomBar businessInfo={this.state.currentBusiness} />
     </div>
   );
+  }
 }
 export default App;

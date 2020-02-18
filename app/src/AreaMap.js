@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Api from './api.js';
-import Icons from './Icons.js'
+import Icons from './Icons.js';
 
 
 class AreaMap extends Component {
@@ -10,7 +10,7 @@ class AreaMap extends Component {
     this.state = {
       longitude: null,
       latitude: null,
-      zoom: 11,
+      zoom: 12,
       businessList: null,
     }
   }
@@ -31,7 +31,12 @@ class AreaMap extends Component {
     }
   }
 
+  onPhotoClick = (businessInfo) => {
+    this.props.clickPhoto(businessInfo);
+  }
+
   render() {
+    // console.log(this.state.businessList);
     if(this.state.latitude === null || this.state.longitude === null) {
       return(
         <div>
@@ -55,17 +60,22 @@ class AreaMap extends Component {
     if(this.state.businessList === null) return null
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div className='map-container'>
         <GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyAOnWbA4sdxRvMQWHg_AzoJwB9MBmfe2Qo' }} defaultCenter={props.center} defaultZoom={props.zoom}>
           <PositionMarker lat={this.state.latitude} lng={this.state.longitude} text="Dis U" />
           {this.state.businessList.map((restaurant, index) => {
             return (
-              <Icons key={index} lat={restaurant.coordinates.latitude} lng={restaurant.coordinates.longitude} data={restaurant} />
+              <Icons
+              key={index}
+              lat={restaurant.coordinates.lat}
+              lng={restaurant.coordinates.lng}
+              data={restaurant}
+              clickPhoto={this.onPhotoClick.bind(this)}
+
+              />
+
             )
           })}
-        {/* <button> */}
-        {/*   Find More Food */}
-        {/* </button> */}
         </GoogleMapReact>
       </div>
     );
