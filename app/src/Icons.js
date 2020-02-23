@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-const photoKey = '&key=AIzaSyAOnWbA4sdxRvMQWHg_AzoJwB9MBmfe2Qo';
+const photoKey = `AIzaSyDg2FbzEo9E49aIjWHigryCDHz1BfBWt3w`;
 
 class Icons extends Component {
 

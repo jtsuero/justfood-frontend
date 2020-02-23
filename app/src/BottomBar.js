@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const photoKey = '&key=AIzaSyAOnWbA4sdxRvMQWHg_AzoJwB9MBmfe2Qo';
+const photoKey = `AIzaSyDg2FbzEo9E49aIjWHigryCDHz1BfBWt3w`;
 
 export default class BottomBar extends Component {
 
@@ -37,7 +37,7 @@ export default class BottomBar extends Component {
           {this.props.businessInfo.photos.map((restaurant, index) => {
             return (
               <div className='bottombar-photo-row' key={restaurant.photo_reference}>
-                <img className='bottombar-food' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}${photoKey}`} alt={'new'} />
+                <img className='bottombar-food' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`} alt={'new'} />
               </div>
             )
           })}
