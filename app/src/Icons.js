@@ -9,13 +9,17 @@ class Icons extends Component {
   }
 
   render(){
-    return(
-      <img className='food-image'
-        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.data.photos[0].photo_reference}${photoKey}`}
-        alt={'new'}
-        onClick={() => {this.onClickPhoto(this.props.data)}}
-      />
-    )
+    if(this.props.data.photos) {
+      return(
+        <img className='map-food-image'
+          src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.data.photos[0].photo_reference}&key=${photoKey}`}
+          alt={'new'}
+          onClick={() => {this.onClickPhoto(this.props.data)}}
+        />
+      )
+    } else {
+      return null
+    }
   }
 }
 

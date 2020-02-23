@@ -36,7 +36,6 @@ class AreaMap extends Component {
   }
 
   render() {
-    // console.log(this.state.businessList);
     if(this.state.latitude === null || this.state.longitude === null) {
       return(
         <div>

@@ -41,16 +41,6 @@
   border-radius: 50%;
 }
 
-.photo-clicked {
-  display: table-cell;
-  padding: 5px;
-  /* border: 5px solid black; */
-  border-radius: 5px;
-  /* background: red; */
-  height: 70px;
-  width: 70px;
-}
-
 .restaurant-name {
   font-size: 50px;
 }
