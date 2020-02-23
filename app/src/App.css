@@ -1,42 +1,38 @@
 .main-container {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
+  align-items: flex-end;
 }
 
 .map-container {
-  height: 75vh;
+  height: 100vh;
   width: 100vw;
-}
-
-.image-container {
-  position: fixed;
-  min-height: 200px;
-  /* max-width: 60%; */
-  width: 100%;
-
-  background-color: white;
 }
 
 .bottombar {
+  bottom: 0;
+  position: fixed;
   width: 100vw;
   height: 25vh;
+  background-color: white;
 }
 
 .bottombar-photo-row {
-  display: inline-block;
+  display: flex-block;
 }
 
 .bottombar-food {
-  height: 150px;
-  width: 150px;
+  height: auto;
+  width: 20%;
 }
 
-.food-image {
-  height: 150px;
-  width: 150px;
+.map-food-image {
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .clicked-image {

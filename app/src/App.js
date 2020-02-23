@@ -8,20 +8,37 @@ class App extends Component {
     super();
     this.state = {
       currentBusiness: null,
+      bottomBarOpen: false,
     };
   }
 
+  closeBottomBar = () => {
+    this.setState({bottomBarOpen: false});
+  }
+
   onPhotoClick = (newBusiness) => {
-    this.setState({currentBusiness: newBusiness});
+    this.setState((prevState) => {
+      return {
+        bottomBarOpen: !prevState.bottomBarOpen,
+        currentBusiness: newBusiness,
+      };
+    });
   }
 
   render() {
-  return (
-    <div className='main-container'>
-      <AreaMap clickPhoto={this.onPhotoClick.bind(this)}/>
-      <BottomBar businessInfo={this.state.currentBusiness} />
-    </div>
-  );
+    let bottomBar;
+
+    if(this.state.bottomBarOpen) {
+      bottomBar = <BottomBar businessInfo={this.state.currentBusiness} />
+    }
+    return (
+      <div className='main-container'>
+        <AreaMap
+          clickPhoto={this.onPhotoClick.bind(this)} 
+          closeBottomBar={this.closeBottomBar.bind(this)}/>
+        {bottomBar}
+      </div>
+    );
   }
 }
 export default App;
