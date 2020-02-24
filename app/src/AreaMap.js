@@ -35,6 +35,10 @@ class AreaMap extends Component {
     this.props.clickPhoto(businessInfo);
   }
 
+  onMapClick = () => {
+    this.props.closeBottomBar();
+  }
+
   render() {
     if(this.state.latitude === null || this.state.longitude === null) {
       return(
@@ -60,17 +64,17 @@ class AreaMap extends Component {
     if(this.state.businessList === null) return null
     return (
       // Important! Always set the container height explicitly
-      <div className='map-container'>
+      <div className='map-container' onClick={this.onMapClick}>
         <GoogleMapReact bootstrapURLKeys={{ key: props.key }} defaultCenter={props.center} defaultZoom={props.zoom}>
           <PositionMarker lat={this.state.latitude} lng={this.state.longitude} text="Dis U" />
           {this.state.businessList.map((restaurant, index) => {
             return (
               <Icons
-              key={index}
-              lat={restaurant.coordinates.lat}
-              lng={restaurant.coordinates.lng}
-              data={restaurant}
-              clickPhoto={this.onPhotoClick.bind(this)}
+                key={index}
+                lat={restaurant.coordinates.lat}
+                lng={restaurant.coordinates.lng}
+                data={restaurant}
+                clickPhoto={this.onPhotoClick.bind(this)}
 
               />
 

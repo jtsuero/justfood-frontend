@@ -12,16 +12,27 @@ class App extends Component {
     };
   }
 
-  closeBottomBar = () => {
-    this.setState({bottomBarOpen: false});
+  closeBottomBar = (prevState) => {
+    this.setState((prevState) => {
+      if(this.state.bottomBarOpen === true && prevState.currentBusiness.id === this.state.currentBusiness.id) {
+        return {bottomBarOpen: false}
+      }
+    });
   }
 
   onPhotoClick = (newBusiness) => {
     this.setState((prevState) => {
-      return {
-        bottomBarOpen: !prevState.bottomBarOpen,
-        currentBusiness: newBusiness,
-      };
+      if(prevState.currentBusiness !== null && prevState.currentBusiness.id === newBusiness.id) {
+        return {
+          bottomBarOpen: !prevState.bottomBarOpen,
+          currentBusiness: newBusiness,
+        };
+      } else {
+        return {
+          bottomBarOpen: true,
+          currentBusiness: newBusiness,
+        }
+      }
     });
   }
 
