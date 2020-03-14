@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Modal from './Modal.js';
 import Api from './api.js';
 import yelpPhoto from './yelp_logo.png';
 const photoKey = `AIzaSyDg2FbzEo9E49aIjWHigryCDHz1BfBWt3w`;
@@ -11,10 +10,6 @@ export default class BottomBar extends Component {
       yelpLink: null,
     }
   }
-
-  // componentDidMount() {
-  //   this.getYelpLink();
-  // }
 
   getDay = () => {
     const date = new Date();
