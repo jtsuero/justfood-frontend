@@ -20,6 +20,7 @@ class App extends Component {
     });
   }
 
+  //enables business data to be passed BottomBar component
   onPhotoClick = (newBusiness) => {
     this.setState((prevState) => {
       if(prevState.currentBusiness !== null && prevState.currentBusiness.id === newBusiness.id) {

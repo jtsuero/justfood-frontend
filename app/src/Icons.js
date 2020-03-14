@@ -4,6 +4,7 @@ const photoKey = `AIzaSyDg2FbzEo9E49aIjWHigryCDHz1BfBWt3w`;
 
 class Icons extends Component {
 
+  //passes businessInfo back to parent component -- AreaMap
   onClickPhoto = (businessInfo) => {
     this.props.clickPhoto(businessInfo);
   }

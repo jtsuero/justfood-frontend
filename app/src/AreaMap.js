@@ -32,6 +32,7 @@ class AreaMap extends Component {
     }
   }
 
+  //passes businessInfo back to parent component -- App.js
   onPhotoClick = (businessInfo) => {
     this.props.clickPhoto(businessInfo);
   }

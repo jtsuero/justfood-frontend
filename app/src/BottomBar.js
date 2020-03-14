@@ -26,9 +26,35 @@ export default class BottomBar extends Component {
     }
   }
 
+  getYelpLink = () => {
+    const addressArray = this.props.businessInfo.address.split(', ');
+    const phone = this.props.businessInfo.int_phone.replace(' ', '').replace(/-/g, '')
+    console.log("fuck");
+    Api.getYelpLink(
+      // console.log(
+      this.props.businessInfo.name,
+      //address portion
+      addressArray[0],
+      //city
+      addressArray[1],
+      //state
+      addressArray[2].substring(0, 2),
+      //zip code
+      addressArray[2].substring(3),
+      phone,
+      this.props.businessInfo.coordinates.lat,
+      this.props.businessInfo.coordinates.lng,
+    )
+      .then(yelpLink => {this.setState({yelpLink: yelpLink.businessInfo[0].yelp_url})})
+    // .then(yelpLink => {console.log(yelpLink)})
+  }
+
   render() {
-    console.log(this.props.businessInfo);
+    console.log(this.state.yelpLink);
     const day = this.getDay();
+    if(this.state.yelpLink ===  null) {
+      this.getYelpLink();
+    }
     if(this.props.businessInfo !== null) {
       return(
         <div className='bottombar' >
