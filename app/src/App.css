@@ -17,22 +17,40 @@
   width: 100vw;
   height: 25vh;
   background-color: white;
+  overflow: auto;
+  box-shadow: 0 0 7px ;
 }
 
 .bottombar-photo-row {
-  display: flex-block;
+  display: inline;
 }
 
 .bottombar-food {
-  height: auto;
-  width: 20%;
+  height: 40%;
+  width: auto;
+  margin: 1px;
 }
 
 .map-food-image {
+  box-shadow: 0 0 7px ;
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
+  border: 1px solid silver;
   cursor: pointer;
+  position: absolute;
+}
+
+.map-food-image:hover {
+  z-index: 999;
+}
+
+.marker {
+  position: absolute;
+  z-index: 999;
+  background: transparent;
+  height: 50px;
+  width: auto;
 }
 
 .clicked-image {
@@ -47,4 +65,13 @@
 
 .restaurant-hours {
   font-size: medium;
+}
+
+.bottombar-business-info {
+
+}
+
+.yelp-logo {
+  height: 25px;
+  width: auto;
 }
