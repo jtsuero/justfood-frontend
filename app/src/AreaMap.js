@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Api from './api.js';
 import Icons from './Icons.js';
+import marker from './location_map_pin_navy_blue5.png'
 
 
 class AreaMap extends Component {
@@ -57,16 +58,16 @@ class AreaMap extends Component {
     }
 
     if(this.state.businessList === null) {
-      Api.getPhotos(this.state.latitude, this.state.longitude)
+      Api.getBusinesses(this.state.latitude, this.state.longitude)
         .then(data => this.setState({businessList: data.businesses}))
     }
-    const PositionMarker = ({ text }) => <div>{text}</div>;
+    const PositionMarker = ({ text }) => <img className='marker' src={marker} alt={"You"}></img>;
     if(this.state.businessList === null) return null
     return (
       // Important! Always set the container height explicitly
       <div className='map-container' onClick={this.onMapClick}>
         <GoogleMapReact bootstrapURLKeys={{ key: props.key }} defaultCenter={props.center} defaultZoom={props.zoom}>
-          <PositionMarker lat={this.state.latitude} lng={this.state.longitude} text="Dis U" />
+          <PositionMarker lat={this.state.latitude} lng={this.state.longitude}  />
           {this.state.businessList.map((restaurant, index) => {
             return (
               <Icons
