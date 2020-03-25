@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container {
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-flow: column nowrap;
+  align-items: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+.map-container {
+  height: 100vh;
+  width: 100vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.bottombar {
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  height: 25vh;
+  background-color: white;
+  overflow: auto;
+  box-shadow: 0 0 7px ;
+}
+
+.bottombar-photo-row {
+  display: inline;
+}
+
+.bottombar-image {
+  height: 40%;
+  width: auto;
+  margin: 1px;
+}
+
+.map-food-image {
+  box-shadow: 0 0 7px ;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  border: 1px solid silver;
+  cursor: pointer;
+  position: absolute; /* needed to make :hover work */
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+.map-food-image:hover {
+  z-index: 999;
+}
+
+.marker {
+  position: absolute; /*needed to make z-index work*/
+  z-index: 999;
+  background: transparent;
+  height: 50px;
+}
+
+.restaurant-name {
+  font-size: 50px;
+}
+
+.yelp-logo {
+  height: 25px;
+  width: auto;
 }
