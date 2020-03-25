@@ -12,8 +12,8 @@ class Api {
       .then((res) => res.json());
   }
 
-  getYelpLink = (name, address1, city, state, zip, phone, lat, lng) => {
-    return fetch(`${HOST_URL}/places/yelp/?name=${name}&address1=${address1}&city=${city}&state=${state}&zip_code=${zip}&phone=${phone}&lat=${lat}&lng=${lng}`,
+  getYelpLink = (attributes) => {
+    return fetch(`${HOST_URL}/places/yelp/?name=${attributes.name}&address1=${attributes.address1}&city=${attributes.city}&state=${attributes.state}&zip_code=${attributes.zip}&phone=${attributes.phone}&lat=${attributes.lat}&lng=${attributes.lng}`,
       {
         method: 'get',
         mode: 'cors',
