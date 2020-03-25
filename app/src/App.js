@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-    let bottomBar;
+    let bottomBar = null;
 
     if(this.state.bottomBarOpen) {
       bottomBar = <BottomBar businessInfo={this.state.currentBusiness} />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Api from './api.js';
 import yelpPhoto from './yelp_logo.png';
-const photoKey = `AIzaSyDg2FbzEo9E49aIjWHigryCDHz1BfBWt3w`;
+const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BottomBar extends Component {
   constructor() {
@@ -56,14 +56,9 @@ export default class BottomBar extends Component {
           <div className='restaurant-name'>
             {this.props.businessInfo.name}
           </div>
-          {/* need to add an if statement here? Component!!!  also gotta figure out how to get link to yelp site  */}
-          {/* {() => {if(this.props.businessInfo) { return */}
-          {/* <div> */}
-          {/*   <a href={this.props.businessInfo.website} > Website </a> */}
-          {/* </div>  }}} */}
           <div className='bottombar-business-info'>
             Hours:
-            {" " + this.props.businessInfo.hours[day] + " "}
+            {" " + this.props.businessInfo.hours[this.getDay()] + " "}
             Phone:
             {" " + this.props.businessInfo.phone + " "}
             <a href={this.state.yelpLink}>
@@ -73,22 +68,12 @@ export default class BottomBar extends Component {
           {this.props.businessInfo.photos.map((restaurant, index) => {
             return (
               <div className='bottombar-photo-row' key={restaurant.photo_reference}>
-                <img className='bottombar-food' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`} alt={'new'} />
-                {/* <Modal photoreference={restaurant.photo_reference}/> */}
+                <img className='bottombar-image' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`} alt={'new'} />
               </div>
             )
           })}
         </div>
       )
-    } else {
-
-      return(
-        <div className='bottombar'>
-          TEST
-        </div>
-      )
     }
-
-
   }
 }

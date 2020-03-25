@@ -49,13 +49,13 @@ class AreaMap extends Component {
         </div>
       )
     }
-    const props = {
+    const mapProps = {
       center: {
         lat: this.state.latitude,
         lng: this.state.longitude,
       },
       zoom: this.state.zoom,
-      key: 'AIzaSyDg2FbzEo9E49aIjWHigryCDHz1BfBWt3w',
+      key: 'AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic',
     }
 
     if(this.state.businessList === null) {
@@ -67,7 +67,7 @@ class AreaMap extends Component {
     return (
       // Important! Always set the container height explicitly
       <div className='map-container' onClick={this.onMapClick}>
-        <GoogleMapReact bootstrapURLKeys={{ key: props.key }} defaultCenter={props.center} defaultZoom={props.zoom}>
+        <GoogleMapReact bootstrapURLKeys={{ key: mapProps.key }} defaultCenter={mapProps.center} defaultZoom={mapProps.zoom}>
           <PositionMarker lat={this.state.latitude} lng={this.state.longitude}  />
           {this.state.businessList.map((restaurant, index) => {
             return (
