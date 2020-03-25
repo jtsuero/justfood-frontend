@@ -25,7 +25,7 @@
   display: inline;
 }
 
-.bottombar-food {
+.bottombar-image {
   height: 40%;
   width: auto;
   margin: 1px;
@@ -38,37 +38,22 @@
   border-radius: 50%;
   border: 1px solid silver;
   cursor: pointer;
-  position: absolute;
-}
+  position: absolute; /* needed to make :hover work */
+  }
 
 .map-food-image:hover {
   z-index: 999;
 }
 
 .marker {
-  position: absolute;
+  position: absolute; /*needed to make z-index work*/
   z-index: 999;
   background: transparent;
   height: 50px;
-  width: auto;
-}
-
-.clicked-image {
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
 }
 
 .restaurant-name {
   font-size: 50px;
-}
-
-.restaurant-hours {
-  font-size: medium;
-}
-
-.bottombar-business-info {
-
 }
 
 .yelp-logo {
