@@ -62,7 +62,12 @@ class App extends Component {
           closeBottomBar={this.closeBottomBar.bind(this)}
         />
       );
-      map = <AreaMap coordinates={this.state.coordinates} />;
+      map = (
+        <AreaMap
+          coordinates={this.state.coordinates}
+          restaurantCoordinates={this.state.currentBusiness}
+        />
+      );
     }
     return (
       <div className="main-container">

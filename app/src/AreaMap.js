@@ -5,6 +5,7 @@ import Icons from "./Icons.js";
 import marker from "./location_map_pin_navy_blue5.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 class AreaMap extends Component {
   constructor() {
@@ -40,7 +41,10 @@ class AreaMap extends Component {
     };
 
     const PositionMarker = ({ text }) => (
-      <FontAwesomeIcon icon={faLocationArrow} />
+      <FontAwesomeIcon icon={faLocationArrow} className="map-position-marker" />
+    );
+    const RestaurantMarker = ({ text }) => (
+      <FontAwesomeIcon icon={faUtensils} className="map-restaurant-marker" />
     );
     return (
       // Important! Always set the container height explicitly
@@ -51,8 +55,12 @@ class AreaMap extends Component {
           defaultZoom={mapProps.zoom}
         >
           <PositionMarker
-            lat={this.state.latitude}
-            lng={this.state.longitude}
+            lat={this.props.coordinates.latitude}
+            lng={this.props.coordinates.longitude}
+          />
+          <RestaurantMarker
+            lat={this.props.restaurantCoordinates.coordinates.lat}
+            lng={this.props.restaurantCoordinates.coordinates.lng}
           />
         </GoogleMapReact>
       </div>
