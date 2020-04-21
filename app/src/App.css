@@ -43,6 +43,8 @@
 
 .close-button-bottombar {
   right: 0;
+  font-size: 3em;
+  padding: 10px;
   position: absolute;
   cursor: pointer;
 }
