@@ -22,31 +22,7 @@ export default class BottomBar extends Component {
     }
   };
 
-  // getYelpLink = () => {
-  //   const addressArray = this.props.businessInfo.address.split(", ");
-  //   const phone = this.props.businessInfo.int_phone
-  //     .replace(" ", "")
-  //     .replace(/-/g, "");
-  //   Api.getYelpLink({
-  //     name: this.props.businessInfo.name,
-  //     address: addressArray[0],
-  //     city: addressArray[1],
-  //     state: addressArray[2].substring(0, 2),
-  //     zip: addressArray[2].substring(3),
-  //     phone: phone,
-  //     lat: this.props.businessInfo.coordinates.lat,
-  //     lng: this.props.businessInfo.coordinates.lng
-  //   }).then(yelpLink => {
-  //     if (yelpLink.businessInfo) {
-  //       this.setState({ yelpLink: yelpLink.businessInfo[0].yelp_url });
-  //     }
-  //   });
-  // };
-
   render() {
-    // if (this.state.yelpLink === null) {
-    //   this.getYelpLink();
-    // }
     if (this.props.businessInfo !== null) {
       return (
         <div className="bottombar">
@@ -61,9 +37,6 @@ export default class BottomBar extends Component {
             {" " + this.props.businessInfo.hours[this.getDay()] + " "}
             Phone:
             {" " + this.props.businessInfo.phone + " "}
-            {/*   <a href={this.state.yelpLink}> */}
-            {/*     <img className="yelp-logo" src={yelpPhoto} alt={"Yelp"} /> */}
-            {/*   </a> */}
           </div>
           {this.props.businessInfo.photos.map((restaurant, index) => {
             return (
