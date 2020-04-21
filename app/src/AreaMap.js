@@ -3,6 +3,8 @@ import GoogleMapReact from "google-map-react";
 import Api from "./api.js";
 import Icons from "./Icons.js";
 import marker from "./location_map_pin_navy_blue5.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
 class AreaMap extends Component {
   constructor() {
@@ -16,29 +18,13 @@ class AreaMap extends Component {
   }
 
   componentDidMount() {
-    this.getLocation();
-  }
-
-  getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const longitude = position.coords.longitude;
-        const latitude = position.coords.latitude;
-        this.setState({ longitude, latitude });
+    if (this.props.coordinates !== null) {
+      this.setState({
+        longitude: this.props.coordinates.longitude,
+        latitude: this.props.coordinates.latitude
       });
-    } else {
-      console.log("error with navigator");
     }
-  };
-
-  //passes businessInfo back to parent component -- App.js
-  onPhotoClick = businessInfo => {
-    this.props.clickPhoto(businessInfo);
-  };
-
-  onMapClick = () => {
-    this.props.closeBottomBar();
-  };
+  }
 
   render() {
     if (this.state.latitude === null || this.state.longitude === null) {
@@ -53,18 +39,12 @@ class AreaMap extends Component {
       key: "AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic"
     };
 
-    if (this.state.businessList === null) {
-      Api.getBusinesses(this.state.latitude, this.state.longitude).then(data =>
-        this.setState({ businessList: data.businesses })
-      );
-    }
     const PositionMarker = ({ text }) => (
-      <img className="marker" src={marker} alt={"You"}></img>
+      <FontAwesomeIcon icon={faLocationArrow} />
     );
-    if (this.state.businessList === null) return null;
     return (
       // Important! Always set the container height explicitly
-      <div className="map-container" onClick={this.onMapClick}>
+      <div className="map-container">
         <GoogleMapReact
           bootstrapURLKeys={{ key: mapProps.key }}
           defaultCenter={mapProps.center}
@@ -74,24 +54,9 @@ class AreaMap extends Component {
             lat={this.state.latitude}
             lng={this.state.longitude}
           />
-          {this.state.businessList.map((restaurant, index) => {
-            return (
-              <Icons
-                key={index}
-                lat={restaurant.coordinates.lat}
-                lng={restaurant.coordinates.lng}
-                data={restaurant}
-                clickPhoto={this.onPhotoClick.bind(this)}
-              />
-            );
-          })}
         </GoogleMapReact>
       </div>
     );
-  }
-}
-
-export default AreaMap;
   }
 }
 

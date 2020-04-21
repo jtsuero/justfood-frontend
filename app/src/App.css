@@ -7,18 +7,28 @@
 }
 
 .map-container {
-  height: 100vh;
+  height: 50vh;
   width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.bottom-bar-container {
+  background: #ccc;
+  max-width: 500px;
+  margin: 50px auto;
+  position: relative;
 }
 
 .bottombar {
   bottom: 0;
   position: fixed;
   width: 100vw;
-  height: 25vh;
+  height: 50vh;
   background-color: white;
   overflow: auto;
-  box-shadow: 0 0 7px ;
+  box-shadow: 0 0 7px;
 }
 
 .bottombar-photo-row {
@@ -31,15 +41,32 @@
   margin: 1px;
 }
 
+.close-button-bottombar {
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.food-page {
+  display: inline;
+}
+
+.food-page-image {
+  height: 200px;
+  width: auto;
+  margin: 1px;
+  cursor: pointer;
+}
+
 .map-food-image {
-  box-shadow: 0 0 7px ;
+  box-shadow: 0 0 7px;
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
   border: 1px solid silver;
   cursor: pointer;
   position: absolute; /* needed to make :hover work */
-  }
+}
 
 .map-food-image:hover {
   z-index: 999;
