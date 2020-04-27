@@ -23,6 +23,10 @@ export default class BottomBar extends Component {
   };
 
   render() {
+    let phone = "N/A";
+    if (this.props.businessInfo.phone) {
+      phone = " " + this.props.businessInfo.phone + " ";
+    }
     if (this.props.businessInfo !== null) {
       return (
         <div className="bottombar">
@@ -36,7 +40,7 @@ export default class BottomBar extends Component {
             Hours:
             {" " + this.props.businessInfo.hours[this.getDay()] + " "}
             Phone:
-            {" " + this.props.businessInfo.phone + " "}
+            {phone}
           </div>
           {this.props.businessInfo.photos.map((restaurant, index) => {
             return (

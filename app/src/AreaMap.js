@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import Api from "./api.js";
-import Icons from "./Icons.js";
-import marker from "./location_map_pin_navy_blue5.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";

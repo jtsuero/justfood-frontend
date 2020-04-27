@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       currentBusiness: null,
       bottomBarOpen: false,
-      searchKeyword: "food",
+      searchKeyword: "restaurants",
       searchRadius: 5000,
       coordinates: null
     };
