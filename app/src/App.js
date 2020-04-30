@@ -23,14 +23,15 @@ class App extends Component {
   };
 
   closeBottomBar = prevState => {
-    this.setState(prevState => {
-      if (
-        this.state.bottomBarOpen === true &&
-        prevState.currentBusiness.id === this.state.currentBusiness.id
-      ) {
-        return { bottomBarOpen: false };
-      }
-    });
+    // this.setState(prevState => {
+    //   if (
+    //     this.state.bottomBarOpen === true &&
+    //     prevState.currentBusiness.id === this.state.currentBusiness.id
+    //   ) {
+    //     return { bottomBarOpen: false };
+    //   }
+    // });
+    this.setState({ bottomBarOpen: false });
   };
 
   getCoordinates = (latitude, longitude) => {
@@ -41,22 +42,23 @@ class App extends Component {
 
   //enables business data to be passed BottomBar component
   onPhotoClick = newBusiness => {
-    this.setState(prevState => {
-      if (
-        prevState.currentBusiness !== null &&
-        prevState.currentBusiness.id === newBusiness.id
-      ) {
-        return {
-          bottomBarOpen: !prevState.bottomBarOpen,
-          currentBusiness: newBusiness
-        };
-      } else {
-        return {
-          bottomBarOpen: true,
-          currentBusiness: newBusiness
-        };
-      }
-    });
+    // this.setState(prevState => {
+    //   if (
+    //     prevState.currentBusiness !== null &&
+    //     prevState.currentBusiness.id === newBusiness.id
+    //   ) {
+    //     return {
+    //       bottomBarOpen: !prevState.bottomBarOpen,
+    //       currentBusiness: newBusiness
+    //     };
+    //   } else {
+    //     return {
+    //       bottomBarOpen: true,
+    //       currentBusiness: newBusiness
+    //     };
+    //   }
+    // });
+    this.setState({ currentBusiness: newBusiness, bottomBarOpen: true });
   };
 
   render() {
@@ -80,10 +82,6 @@ class App extends Component {
     }
     return (
       <div className="main-container">
-        {/* <AreaMap /> */}
-        {/*   clickPhoto={this.onPhotoClick.bind(this)} */}
-        {/*   closeBottomBar={this.closeBottomBar.bind(this)} */}
-        {/* /> */}
         <NavBar changeSearch={this.changeSearch.bind(this)} />
         <FoodPage
           clickPhoto={this.onPhotoClick.bind(this)}

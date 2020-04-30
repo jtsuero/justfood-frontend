@@ -12,7 +12,6 @@ export default class NavBar extends Component {
   setBusinessDetails = e => {
     e.preventDefault();
     //pass data back to parent
-    console.log("test");
     this.props.changeSearch(this.state.searchInput, this.state.radius);
   };
 
