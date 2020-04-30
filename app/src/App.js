@@ -24,14 +24,6 @@ class App extends Component {
   };
 
   closeBottomBar = prevState => {
-    // this.setState(prevState => {
-    //   if (
-    //     this.state.bottomBarOpen === true &&
-    //     prevState.currentBusiness.id === this.state.currentBusiness.id
-    //   ) {
-    //     return { bottomBarOpen: false };
-    //   }
-    // });
     this.setState({ bottomBarOpen: false });
   };
 
@@ -43,22 +35,6 @@ class App extends Component {
 
   //enables business data to be passed BottomBar component
   onPhotoClick = newBusiness => {
-    // this.setState(prevState => {
-    //   if (
-    //     prevState.currentBusiness !== null &&
-    //     prevState.currentBusiness.id === newBusiness.id
-    //   ) {
-    //     return {
-    //       bottomBarOpen: !prevState.bottomBarOpen,
-    //       currentBusiness: newBusiness
-    //     };
-    //   } else {
-    //     return {
-    //       bottomBarOpen: true,
-    //       currentBusiness: newBusiness
-    //     };
-    //   }
-    // });
     this.setState({ currentBusiness: newBusiness, bottomBarOpen: true });
   };
 
