@@ -7,10 +7,10 @@
 }
 
 .map-container {
-  height: 50vh;
+  height: 40vh;
   width: 100vw;
   position: fixed;
-  top: 0;
+  top: 10vh;
   left: 0;
 }
 
@@ -53,18 +53,19 @@
   flex-grow: 10;
 }
 
-.food-page {
-  height: 100%;
-  width: 100%;
+.food-page-loading {
+  margin: auto;
+  padding: 200px;
 }
 
 .food-page-images-container {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
   width: 100%;
 }
 
-.food-page-single-image {
+.food-page-single-image-container {
   height: 20vh;
   flex-grow: 1;
   margin: 1px;
@@ -100,9 +101,9 @@
 }
 
 .navbar-container {
-  height: 100px;
+  display: flex;
+  height: 10vh;
   width: 100%;
-  padding: 1px;
   padding: 1px;
   margin: 1px;
   background-color: #ffde59;

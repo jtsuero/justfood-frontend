@@ -23,7 +23,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <img className="logo" src={logo}></img>
+        <img className="logo" src={logo} alt=""></img>
         <form onSubmit={this.setBusinessDetails}>
           <input type="text" onChange={this.handleSearchChange} />
           <input type="submit" value="Search" />

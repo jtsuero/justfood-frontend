@@ -66,7 +66,7 @@ class FoodPage extends Component {
         this.state.businessList[i].photos.length > 1
       ) {
         photoCollection.push(
-          <div className="food-page-single-image">
+          <div className="food-page-single-image-container">
             <img
               className="food-page-image"
               src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
@@ -84,7 +84,7 @@ class FoodPage extends Component {
 
   render() {
     if (this.state.businessList === null) {
-      return <img className="loading" src={loading} alt="none"></img>;
+      return <img className="food-page-loading" src={loading} alt="none"></img>;
     }
     return <div className="food-page-images-container">{this.getPhotos()}</div>;
   }
