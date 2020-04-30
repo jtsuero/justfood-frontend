@@ -73,6 +73,7 @@
 }
 
 .food-page-images-container {
+  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -83,6 +84,7 @@
   height: 20vh;
   flex-grow: 1;
   margin: 1px;
+  max-width: 25%;
 }
 
 .food-page-image {
@@ -162,6 +164,7 @@
 
 .bottombar-business-info {
   height: 20%;
+  font-family: sans-serif;
 }
 
 .yelp-logo {
