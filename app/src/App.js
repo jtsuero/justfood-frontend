@@ -13,13 +13,14 @@ class App extends Component {
       bottomBarOpen: false,
       searchKeyword: "restaurants",
       searchRadius: 5000,
+      openNow: true,
       coordinates: null
     };
   }
 
-  changeSearch = (searchKeyword, searchRadius) => {
+  changeSearch = (searchKeyword, searchRadius, openNow) => {
     console.log("keyword", searchKeyword);
-    this.setState({ searchKeyword, searchRadius });
+    this.setState({ searchKeyword, searchRadius, openNow });
   };
 
   closeBottomBar = prevState => {

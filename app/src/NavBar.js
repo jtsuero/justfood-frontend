@@ -6,17 +6,26 @@ export default class NavBar extends Component {
     super();
     this.state = {
       searchInput: null,
-      radius: null
+      openNow: true,
+      radius: null,
     };
   }
-  setBusinessDetails = e => {
+  setBusinessDetails = (e) => {
     e.preventDefault();
     //pass data back to parent
-    this.props.changeSearch(this.state.searchInput, this.state.radius);
+    this.props.changeSearch(
+      this.state.searchInput,
+      this.state.radius,
+      this.state.openNow
+    );
   };
 
-  handleSearchChange = e => {
+  handleSearchChange = (e) => {
     this.setState({ searchInput: e.target.value });
+  };
+
+  handleOpenNowChange = (event) => {
+    this.setState({ openNow: event.target.checked });
   };
 
   render() {
@@ -25,6 +34,13 @@ export default class NavBar extends Component {
         <img className="logo" src={logo} alt=""></img>
         <form onSubmit={this.setBusinessDetails}>
           <input type="text" onChange={this.handleSearchChange} />
+          <input
+            type="checkbox"
+            onChange={this.handleOpenNowChange}
+            name="open now"
+            checked
+          />
+          <label for="open now">Open Now</label>
           <input type="submit" value="Search" />
         </form>
       </div>
