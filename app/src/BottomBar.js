@@ -35,27 +35,30 @@ export default class BottomBar extends Component {
             icon={faTimes}
             onClick={this.props.closeBottomBar}
           />
-          <div className="restaurant-name">{this.props.businessInfo.name}</div>
           <div className="bottombar-business-info">
-            Hours:
-            {" " + this.props.businessInfo.hours[this.getDay()] + " "}
-            Phone:
-            {phone}
+            <div className="restaurant-name">
+              {this.props.businessInfo.name}
+            </div>
+            <div className="business-specifics">
+              Hours:
+              {" " + this.props.businessInfo.hours[this.getDay()] + " "}
+              Phone:
+              {phone}
+            </div>
           </div>
-          {this.props.businessInfo.photos.map((restaurant, index) => {
-            return (
-              <div
-                className="bottombar-photo-row"
-                key={restaurant.photo_reference}
-              >
-                <img
-                  className="bottombar-image"
-                  src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
-                  alt={"can't find image"}
-                />
-              </div>
-            );
-          })}
+          <div className="bottombar-photo-row-container">
+            <div className="bottombar-photo-row">
+              {this.props.businessInfo.photos.map((restaurant, index) => {
+                return (
+                  <img
+                    className="bottombar-image"
+                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
+                    alt={""}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
       );
     }

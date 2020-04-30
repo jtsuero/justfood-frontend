@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import logo from "./just-food-logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default class NavBar extends Component {
   constructor() {
@@ -32,16 +34,15 @@ export default class NavBar extends Component {
     return (
       <div className="navbar-container">
         <img className="logo" src={logo} alt=""></img>
-        <form onSubmit={this.setBusinessDetails}>
-          <input type="text" onChange={this.handleSearchChange} />
+        <form onSubmit={this.setBusinessDetails} className="navbar-form">
           <input
-            type="checkbox"
-            onChange={this.handleOpenNowChange}
-            name="open now"
-            checked
+            type="text"
+            onChange={this.handleSearchChange}
+            className="navbar-searchbox"
           />
-          <label for="open now">Open Now</label>
-          <input type="submit" value="Search" />
+          <button type="submit" value="Search" className="navbar-search-button">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
         </form>
       </div>
     );

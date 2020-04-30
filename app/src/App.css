@@ -31,13 +31,27 @@
   box-shadow: 0 0 7px;
 }
 
+.bottombar-photo-row-container {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .bottombar-photo-row {
-  display: inline;
+  height: 19vh;
+  flex-grow: 1;
 }
 
 .bottombar-image {
-  height: 40%;
-  width: auto;
+  /* height: 40%; */
+  /* width: auto; */
+  /* margin: 1px; */
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+  height: 100%;
   margin: 1px;
 }
 
@@ -101,16 +115,53 @@
 }
 
 .navbar-container {
+  align-items: center;
   display: flex;
   height: 10vh;
   width: 100%;
   padding: 1px;
-  margin: 1px;
+  box-shadow: 0 0 7px;
   background-color: #ffde59;
+}
+
+.navbar-form {
+  width: 10%;
+}
+
+.navbar-search-button {
+  background-color: transparent;
+  color: #03989e;
+  font-size: 16px;
+  border: transparent;
+  width: 50px;
+  margin: -40px;
+}
+
+.navbar-searchbox {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px #03989e solid;
+  height: 20px;
+  padding: 10px;
+  padding-right: 40px;
+}
+
+.navbar-open-now {
+  color: #03989e;
+  font-size: 16px;
 }
 
 .restaurant-name {
   font-size: 50px;
+  color: #03989e;
+}
+
+.business-specifics {
+  color: #03989e;
+}
+
+.bottombar-business-info {
+  height: 20%;
 }
 
 .yelp-logo {
