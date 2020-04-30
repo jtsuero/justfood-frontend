@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Api from "./api.js";
-import yelpPhoto from "./yelp_logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
