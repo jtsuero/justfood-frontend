@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BottomBar extends Component {
   constructor() {
     super();
     this.state = {
-      yelpLink: null
+      yelpLink: null,
     };
   }
 
@@ -21,9 +21,9 @@ export default class BottomBar extends Component {
   };
 
   render() {
-    let phone = "N/A";
+    let phone = 'N/A';
     if (this.props.businessInfo.phone) {
-      phone = " " + this.props.businessInfo.phone + " ";
+      phone = ' ' + this.props.businessInfo.phone + ' ';
     }
     if (this.props.businessInfo !== null) {
       return (
@@ -39,7 +39,7 @@ export default class BottomBar extends Component {
             </div>
             <div className="business-specifics">
               Hours:
-              {" " + this.props.businessInfo.hours[this.getDay()] + " "}
+              {' ' + this.props.businessInfo.hours[this.getDay()] + ' '}
               Phone:
               {phone}
             </div>
@@ -51,7 +51,7 @@ export default class BottomBar extends Component {
                   <img
                     className="bottombar-image"
                     src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
-                    alt={""}
+                    alt={''}
                   />
                 );
               })}

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./App.css";
-import AreaMap from "./AreaMap.js";
-import BottomBar from "./BottomBar.js";
-import FoodPage from "./FoodPage.js";
-import NavBar from "./NavBar.js";
+import React, { Component } from 'react';
+import './App.css';
+import AreaMap from './AreaMap.js';
+import BottomBar from './BottomBar.js';
+import FoodPage from './FoodPage.js';
+import NavBar from './NavBar.js';
 
 class App extends Component {
   constructor() {
@@ -11,30 +11,30 @@ class App extends Component {
     this.state = {
       currentBusiness: null,
       bottomBarOpen: false,
-      searchKeyword: "restaurants",
+      searchKeyword: 'restaurants',
       searchRadius: 5000,
       openNow: true,
-      coordinates: null
+      coordinates: null,
     };
   }
 
   changeSearch = (searchKeyword, searchRadius, openNow) => {
-    console.log("keyword", searchKeyword);
+    console.log('keyword', searchKeyword);
     this.setState({ searchKeyword, searchRadius, openNow });
   };
 
-  closeBottomBar = prevState => {
+  closeBottomBar = (prevState) => {
     this.setState({ bottomBarOpen: false });
   };
 
   getCoordinates = (latitude, longitude) => {
     this.setState({
-      coordinates: { latitude, longitude }
+      coordinates: { latitude, longitude },
     });
   };
 
   //enables business data to be passed BottomBar component
-  onPhotoClick = newBusiness => {
+  onPhotoClick = (newBusiness) => {
     this.setState({ currentBusiness: newBusiness, bottomBarOpen: true });
   };
 

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import GoogleMapReact from "google-map-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-import { faUtensils } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 
 class AreaMap extends Component {
   constructor() {
@@ -11,7 +11,7 @@ class AreaMap extends Component {
       longitude: null,
       latitude: null,
       zoom: 12,
-      businessList: null
+      businessList: null,
     };
   }
 
@@ -19,7 +19,7 @@ class AreaMap extends Component {
     if (this.props.coordinates !== null) {
       this.setState({
         longitude: this.props.coordinates.longitude,
-        latitude: this.props.coordinates.latitude
+        latitude: this.props.coordinates.latitude,
       });
     }
   }
@@ -31,10 +31,10 @@ class AreaMap extends Component {
     const mapProps = {
       center: {
         lat: this.state.latitude,
-        lng: this.state.longitude
+        lng: this.state.longitude,
       },
       zoom: this.state.zoom,
-      key: "AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic"
+      key: 'AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic',
     };
 
     const PositionMarker = ({ text }) => (

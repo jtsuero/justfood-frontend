@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import logo from "./just-food-logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from 'react';
+import logo from './just-food-logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export default class NavBar extends Component {
   constructor() {
@@ -18,7 +18,7 @@ export default class NavBar extends Component {
     this.props.changeSearch(
       this.state.searchInput,
       this.state.radius,
-      this.state.openNow
+      this.state.openNow,
     );
   };
 
@@ -33,7 +33,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <img className="logo" src={logo} alt=""></img>
+        <img className="navbar-logo" src={logo} alt=""></img>
         <form onSubmit={this.setBusinessDetails} className="navbar-form">
           <input
             type="text"

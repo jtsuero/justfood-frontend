@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Api from "./api.js";
-import loading from "./loading.gif";
+import React, { Component } from 'react';
+import Api from './api.js';
+import loading from './loading.gif';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 class FoodPage extends Component {
@@ -9,9 +9,9 @@ class FoodPage extends Component {
     this.state = {
       longitude: null,
       latitude: null,
-      searchKeyword: "restaurant",
+      searchKeyword: 'restaurant',
       searchRadius: 5000,
-      businessList: null
+      businessList: null,
     };
   }
 
@@ -27,14 +27,14 @@ class FoodPage extends Component {
 
   getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
         this.props.getCoordinates(latitude, longitude);
         this.setState({ longitude, latitude }, this.getBusinesses);
       });
     } else {
-      console.log("error with navigator");
+      console.log('error with navigator');
     }
   };
 
@@ -44,16 +44,16 @@ class FoodPage extends Component {
       longitude: this.state.longitude,
       // keyword: this.state.searchKeyword,
       radius: this.state.searchRadius,
-      keyword: this.props.searchKeyword
+      keyword: this.props.searchKeyword,
       // radius: this.props.searchRadius
     };
-    Api.getBusinesses(searchParams).then(data =>
-      this.setState({ businessList: data.businesses })
+    Api.getBusinesses(searchParams).then((data) =>
+      this.setState({ businessList: data.businesses }),
     );
   };
 
   //passes businessInfo back to parent component -- App.js
-  onClickPhoto = businessInfo => {
+  onClickPhoto = (businessInfo) => {
     this.props.clickPhoto(businessInfo);
   };
 
@@ -70,12 +70,12 @@ class FoodPage extends Component {
             <img
               className="food-page-image"
               src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
-              alt={"new"}
+              alt={'new'}
               onClick={() => {
                 this.onClickPhoto(this.state.businessList[i]);
               }}
             />
-          </div>
+          </div>,
         );
       }
     }
