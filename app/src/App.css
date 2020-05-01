@@ -78,12 +78,13 @@
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .food-page-single-image-container {
   height: 20vh;
   flex-grow: 1;
-  margin: 1px;
+  border: 1px solid white;
   max-width: 25%;
 }
 
@@ -127,7 +128,12 @@
 }
 
 .navbar-form {
-  width: 10%;
+  width: 20%;
+}
+
+.navbar-logo {
+  height: auto;
+  width: 40%;
 }
 
 .navbar-search-button {
