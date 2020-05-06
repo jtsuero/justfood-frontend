@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Api from './api.js';
 import loading from './loading.gif';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
@@ -27,11 +27,11 @@ class FoodPage extends Component {
 
   getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(position => {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
         this.props.getCoordinates(latitude, longitude);
-        this.setState({ longitude, latitude }, this.getBusinesses);
+        this.setState({longitude, latitude}, this.getBusinesses);
       });
     } else {
       console.log('error with navigator');
@@ -47,13 +47,13 @@ class FoodPage extends Component {
       keyword: this.props.searchKeyword,
       // radius: this.props.searchRadius
     };
-    Api.getBusinesses(searchParams).then((data) =>
-      this.setState({ businessList: data.businesses }),
+    Api.getBusinesses(searchParams).then(data =>
+      this.setState({businessList: data.businesses}),
     );
   };
 
   //passes businessInfo back to parent component -- App.js
-  onClickPhoto = (businessInfo) => {
+  onClickPhoto = businessInfo => {
     this.props.clickPhoto(businessInfo);
   };
 
@@ -83,10 +83,22 @@ class FoodPage extends Component {
   };
 
   render() {
-    if (this.state.businessList === null) {
-      return <img className="food-page-loading" src={loading} alt="none"></img>;
+    let styles = {};
+    if (this.props.hidden) {
+      styles.display = 'none';
     }
-    return <div className="food-page-images-container">{this.getPhotos()}</div>;
+    if (this.state.businessList === null) {
+      return (
+        <div className="food-page-loading-container">
+          <img className="food-page-loading" src={loading} alt="none"></img>
+        </div>
+      );
+    }
+    return (
+      <div className="food-page-images-container" style={styles}>
+        {this.getPhotos()}
+      </div>
+    );
   }
 }
 
