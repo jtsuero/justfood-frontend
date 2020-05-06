@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import AreaMap from './AreaMap.js';
 import BottomBar from './BottomBar.js';
@@ -20,22 +20,22 @@ class App extends Component {
 
   changeSearch = (searchKeyword, searchRadius, openNow) => {
     console.log('keyword', searchKeyword);
-    this.setState({ searchKeyword, searchRadius, openNow });
+    this.setState({searchKeyword, searchRadius, openNow});
   };
 
-  closeBottomBar = (prevState) => {
-    this.setState({ bottomBarOpen: false });
+  closeBottomBar = prevState => {
+    this.setState({bottomBarOpen: false});
   };
 
   getCoordinates = (latitude, longitude) => {
     this.setState({
-      coordinates: { latitude, longitude },
+      coordinates: {latitude, longitude},
     });
   };
 
   //enables business data to be passed BottomBar component
-  onPhotoClick = (newBusiness) => {
-    this.setState({ currentBusiness: newBusiness, bottomBarOpen: true });
+  onPhotoClick = newBusiness => {
+    this.setState({currentBusiness: newBusiness, bottomBarOpen: true});
   };
 
   render() {
@@ -57,14 +57,18 @@ class App extends Component {
         />
       );
     }
+    let foodPage = (
+      <FoodPage
+        clickPhoto={this.onPhotoClick.bind(this)}
+        getCoordinates={this.getCoordinates.bind(this)}
+        searchKeyword={this.state.searchKeyword}
+        hidden={this.state.bottomBarOpen}
+      />
+    );
     return (
       <div className="main-container">
         <NavBar changeSearch={this.changeSearch.bind(this)} />
-        <FoodPage
-          clickPhoto={this.onPhotoClick.bind(this)}
-          getCoordinates={this.getCoordinates.bind(this)}
-          searchKeyword={this.state.searchKeyword}
-        />
+        {foodPage}
         {bottomBar}
         {map}
       </div>

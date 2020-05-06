@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
-import { faUtensils } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faLocationArrow} from '@fortawesome/free-solid-svg-icons';
+import {faUtensils} from '@fortawesome/free-solid-svg-icons';
 
 class AreaMap extends Component {
   constructor() {
@@ -37,17 +37,17 @@ class AreaMap extends Component {
       key: 'AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic',
     };
 
-    const PositionMarker = ({ text }) => (
+    const PositionMarker = ({text}) => (
       <FontAwesomeIcon icon={faLocationArrow} className="map-position-marker" />
     );
-    const RestaurantMarker = ({ text }) => (
+    const RestaurantMarker = ({text}) => (
       <FontAwesomeIcon icon={faUtensils} className="map-restaurant-marker" />
     );
     return (
       // Important! Always set the container height explicitly
       <div className="map-container">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: mapProps.key }}
+          bootstrapURLKeys={{key: mapProps.key}}
           defaultCenter={mapProps.center}
           defaultZoom={mapProps.zoom}
         >

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import React, {Component} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BottomBar extends Component {
@@ -45,17 +45,17 @@ export default class BottomBar extends Component {
             </div>
           </div>
           <div className="bottombar-photo-row-container">
-            <div className="bottombar-photo-row">
-              {this.props.businessInfo.photos.map((restaurant, index) => {
-                return (
+            {this.props.businessInfo.photos.map((restaurant, index) => {
+              return (
+                <div className="bottombar-photo-row">
                   <img
                     className="bottombar-image"
                     src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
                     alt={''}
                   />
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       );
