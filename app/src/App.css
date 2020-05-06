@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 .map-container {
@@ -41,18 +42,29 @@
 .bottombar-photo-row {
   height: 19vh;
   flex-grow: 1;
+  border: 1px solid white;
+  max-width: 300px;
 }
 
 .bottombar-image {
-  /* height: 40%; */
-  /* width: auto; */
-  /* margin: 1px; */
   max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
+  min-width: 100%;
   vertical-align: bottom;
   height: 100%;
-  margin: 1px;
+}
+
+.restaurant-name {
+  font-size: 2em;
+  color: #03989e;
+}
+
+.business-specifics {
+  font-size: 1em;
+  color: #03989e;
+}
+
+.bottombar-business-info {
+  font-family: sans-serif;
 }
 
 .close-button-bottombar {
@@ -68,8 +80,16 @@
 }
 
 .food-page-loading {
+  height: 10%;
+  width: auto;
   margin: auto;
-  padding: 200px;
+}
+
+.food-page-loading-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
 }
 
 .food-page-images-container {
@@ -79,6 +99,7 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+  align-items: center;
 }
 
 .food-page-single-image-container {
@@ -123,26 +144,27 @@
   height: 10vh;
   width: 100%;
   padding: 1px;
-  box-shadow: 0 0 7px;
   background-color: #ffde59;
 }
 
 .navbar-form {
-  width: 20%;
+  max-width: 50%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .navbar-logo {
   height: auto;
-  width: 40%;
+  max-width: 50%;
 }
 
 .navbar-search-button {
-  background-color: transparent;
+  background-color: white;
   color: #03989e;
   font-size: 16px;
   border: transparent;
   width: 50px;
-  margin: -40px;
+  border-radius: 20px;
 }
 
 .navbar-searchbox {
@@ -159,21 +181,24 @@
   font-size: 16px;
 }
 
-.restaurant-name {
-  font-size: 50px;
-  color: #03989e;
-}
-
-.business-specifics {
-  color: #03989e;
-}
-
-.bottombar-business-info {
-  height: 20%;
-  font-family: sans-serif;
-}
-
 .yelp-logo {
   height: 25px;
   width: auto;
+}
+
+/* media query for mobile phone portrait mode  */
+@media (min-width: 320px) and (max-width: 480px) {
+  .bottombar-photo-row {
+    max-width: 50%;
+  }
+
+  .food-page-single-image-container {
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .navbar-logo {
+    max-width: 25%;
+  }
 }
