@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import AreaMap from './AreaMap.js';
 import BottomBar from './BottomBar.js';
+import FoodPage from './FoodPage.js';
+import NavBar from './NavBar.js';
 
 class App extends Component {
   constructor() {
@@ -9,46 +11,66 @@ class App extends Component {
     this.state = {
       currentBusiness: null,
       bottomBarOpen: false,
+      searchKeyword: 'restaurants',
+      searchRadius: 5000,
+      openNow: true,
+      coordinates: null,
     };
   }
 
-  closeBottomBar = (prevState) => {
-    this.setState((prevState) => {
-      if(this.state.bottomBarOpen === true && prevState.currentBusiness.id === this.state.currentBusiness.id) {
-        return {bottomBarOpen: false}
-      }
+  changeSearch = (searchKeyword, searchRadius, openNow) => {
+    console.log('keyword', searchKeyword);
+    this.setState({searchKeyword, searchRadius, openNow});
+  };
+
+  closeBottomBar = prevState => {
+    this.setState({bottomBarOpen: false});
+  };
+
+  getCoordinates = (latitude, longitude) => {
+    this.setState({
+      coordinates: {latitude, longitude},
     });
-  }
+  };
 
   //enables business data to be passed BottomBar component
-  onPhotoClick = (newBusiness) => {
-    this.setState((prevState) => {
-      if(prevState.currentBusiness !== null && prevState.currentBusiness.id === newBusiness.id) {
-        return {
-          bottomBarOpen: !prevState.bottomBarOpen,
-          currentBusiness: newBusiness,
-        };
-      } else {
-        return {
-          bottomBarOpen: true,
-          currentBusiness: newBusiness,
-        }
-      }
-    });
-  }
+  onPhotoClick = newBusiness => {
+    this.setState({currentBusiness: newBusiness, bottomBarOpen: true});
+  };
 
   render() {
     let bottomBar = null;
+    let map = null;
 
-    if(this.state.bottomBarOpen) {
-      bottomBar = <BottomBar businessInfo={this.state.currentBusiness} />
-    }
-    return (
-      <div className='main-container'>
+    //alternate view once photo is clicked on landing page
+    if (this.state.bottomBarOpen) {
+      bottomBar = (
+        <BottomBar
+          businessInfo={this.state.currentBusiness}
+          closeBottomBar={this.closeBottomBar.bind(this)}
+        />
+      );
+      map = (
         <AreaMap
-          clickPhoto={this.onPhotoClick.bind(this)} 
-          closeBottomBar={this.closeBottomBar.bind(this)}/>
+          coordinates={this.state.coordinates}
+          restaurantCoordinates={this.state.currentBusiness}
+        />
+      );
+    }
+    let foodPage = (
+      <FoodPage
+        clickPhoto={this.onPhotoClick.bind(this)}
+        getCoordinates={this.getCoordinates.bind(this)}
+        searchKeyword={this.state.searchKeyword}
+        hidden={this.state.bottomBarOpen}
+      />
+    );
+    return (
+      <div className="main-container">
+        <NavBar changeSearch={this.changeSearch.bind(this)} />
+        {foodPage}
         {bottomBar}
+        {map}
       </div>
     );
   }

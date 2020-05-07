@@ -4,42 +4,128 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 .map-container {
-  height: 100vh;
+  height: 40vh;
   width: 100vw;
+  position: fixed;
+  top: 10vh;
+  left: 0;
+}
+
+.bottom-bar-container {
+  background: #ccc;
+  max-width: 500px;
+  margin: 50px auto;
+  position: relative;
 }
 
 .bottombar {
   bottom: 0;
   position: fixed;
   width: 100vw;
-  height: 25vh;
+  height: 50vh;
   background-color: white;
   overflow: auto;
-  box-shadow: 0 0 7px ;
+  box-shadow: 0 0 7px;
+}
+
+.bottombar-photo-row-container {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .bottombar-photo-row {
-  display: inline;
+  height: 19vh;
+  flex-grow: 1;
+  border: 1px solid white;
+  max-width: 300px;
 }
 
 .bottombar-image {
-  height: 40%;
+  max-height: 100%;
+  min-width: 100%;
+  vertical-align: bottom;
+  height: 100%;
+}
+
+.restaurant-name {
+  font-size: 2em;
+  color: #03989e;
+}
+
+.business-specifics {
+  font-size: 1em;
+  color: #03989e;
+}
+
+.bottombar-business-info {
+  font-family: sans-serif;
+}
+
+.close-button-bottombar {
+  right: 0;
+  font-size: 3em;
+  padding: 10px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.filler {
+  flex-grow: 10;
+}
+
+.food-page-loading {
+  height: 10%;
   width: auto;
-  margin: 1px;
+  margin: auto;
+}
+
+.food-page-loading-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+
+.food-page-images-container {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  align-items: center;
+}
+
+.food-page-single-image-container {
+  height: 20vh;
+  flex-grow: 1;
+  border: 1px solid white;
+  max-width: 25%;
+}
+
+.food-page-image {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+  height: 100%;
 }
 
 .map-food-image {
-  box-shadow: 0 0 7px ;
+  box-shadow: 0 0 7px;
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
   border: 1px solid silver;
   cursor: pointer;
   position: absolute; /* needed to make :hover work */
-  }
+}
 
 .map-food-image:hover {
   z-index: 999;
@@ -52,11 +138,67 @@
   height: 50px;
 }
 
-.restaurant-name {
-  font-size: 50px;
+.navbar-container {
+  align-items: center;
+  display: flex;
+  height: 10vh;
+  width: 100%;
+  padding: 1px;
+  background-color: #ffde59;
+}
+
+.navbar-form {
+  max-width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar-logo {
+  height: auto;
+  max-width: 50%;
+}
+
+.navbar-search-button {
+  background-color: white;
+  color: #03989e;
+  font-size: 16px;
+  border: transparent;
+  width: 50px;
+  border-radius: 20px;
+}
+
+.navbar-searchbox {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px #03989e solid;
+  height: 20px;
+  padding: 10px;
+  padding-right: 40px;
+}
+
+.navbar-open-now {
+  color: #03989e;
+  font-size: 16px;
 }
 
 .yelp-logo {
   height: 25px;
   width: auto;
+}
+
+/* media query for mobile phone portrait mode  */
+@media (min-width: 320px) and (max-width: 480px) {
+  .bottombar-photo-row {
+    max-width: 50%;
+  }
+
+  .food-page-single-image-container {
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .navbar-logo {
+    max-width: 25%;
+  }
 }
