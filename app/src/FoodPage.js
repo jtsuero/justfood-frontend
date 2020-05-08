@@ -42,10 +42,8 @@ class FoodPage extends Component {
     const searchParams = {
       latitude: this.state.latitude,
       longitude: this.state.longitude,
-      // keyword: this.state.searchKeyword,
       radius: this.state.searchRadius,
       keyword: this.props.searchKeyword,
-      // radius: this.props.searchRadius
     };
     Api.getBusinesses(searchParams).then(data =>
       this.setState({businessList: data.businesses}),

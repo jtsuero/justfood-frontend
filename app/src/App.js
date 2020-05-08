@@ -19,7 +19,6 @@ class App extends Component {
   }
 
   changeSearch = (searchKeyword, searchRadius, openNow) => {
-    console.log('keyword', searchKeyword);
     this.setState({searchKeyword, searchRadius, openNow});
   };
 
