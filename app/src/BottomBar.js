@@ -47,7 +47,10 @@ export default class BottomBar extends Component {
           <div className="bottombar-photo-row-container">
             {this.props.businessInfo.photos.map((restaurant, index) => {
               return (
-                <div className="bottombar-photo-row">
+                <div
+                  className="bottombar-photo-row"
+                  key={restaurant.photo_reference}
+                >
                   <img
                     className="bottombar-image"
                     src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
