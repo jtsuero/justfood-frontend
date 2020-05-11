@@ -127,8 +127,13 @@
   position: absolute; /* needed to make :hover work */
 }
 
-.map-food-image:hover {
-  z-index: 999;
+.map-position-marker {
+  font-size: 15px;
+}
+
+.map-restaurant-marker {
+  font-size: 15px;
+  color: #03989e;
 }
 
 .marker {
