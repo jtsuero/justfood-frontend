@@ -1,26 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import AreaMap from './AreaMap.js';
+import BottomBar from './BottomBar.js';
+import FoodPage from './FoodPage.js';
+import NavBar from './NavBar.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentBusiness: null,
+      bottomBarOpen: false,
+      searchKeyword: 'restaurants',
+      searchRadius: 5000,
+      openNow: true,
+      coordinates: null,
+    };
+  }
+
+  changeSearch = (searchKeyword, searchRadius, openNow) => {
+    this.setState({searchKeyword, searchRadius, openNow});
+  };
+
+  closeBottomBar = prevState => {
+    this.setState({bottomBarOpen: false});
+  };
+
+  getCoordinates = (latitude, longitude) => {
+    this.setState({
+      coordinates: {latitude, longitude},
+    });
+  };
+
+  //enables business data to be passed BottomBar component
+  onPhotoClick = newBusiness => {
+    this.setState({currentBusiness: newBusiness, bottomBarOpen: true});
+  };
+
+  render() {
+    let bottomBar = null;
+    let map = null;
+
+    //alternate view once photo is clicked on landing page
+    if (this.state.bottomBarOpen) {
+      bottomBar = (
+        <BottomBar
+          businessInfo={this.state.currentBusiness}
+          closeBottomBar={this.closeBottomBar.bind(this)}
+        />
+      );
+      map = (
+        <AreaMap
+          coordinates={this.state.coordinates}
+          restaurantCoordinates={this.state.currentBusiness}
+        />
+      );
+    }
+    let foodPage = (
+      <FoodPage
+        clickPhoto={this.onPhotoClick.bind(this)}
+        getCoordinates={this.getCoordinates.bind(this)}
+        searchKeyword={this.state.searchKeyword}
+        hidden={this.state.bottomBarOpen}
+      />
+    );
+    return (
+      <div className="main-container">
+        <NavBar changeSearch={this.changeSearch.bind(this)} />
+        {foodPage}
+        {bottomBar}
+        {map}
+      </div>
+    );
+  }
 }
-
 export default App;
