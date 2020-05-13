@@ -161,6 +161,7 @@
 .navbar-logo {
   height: auto;
   max-width: 50%;
+  max-height: 10vh;
 }
 
 .navbar-search-button {
