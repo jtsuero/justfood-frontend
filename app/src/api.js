@@ -1,7 +1,7 @@
 const HOST_URL =
   window.location.hostname === 'localhost'
     ? 'http://localhost:8000'
-    : 'https://justfoodserver-env.eba-ajm3vhxu.us-west-2.elasticbeanstalk.com';
+    : 'http://justfoodserver-env.eba-ajm3vhxu.us-west-2.elasticbeanstalk.com';
 
 class Api {
   getBusinesses = searchParams => {
