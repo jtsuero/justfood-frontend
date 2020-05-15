@@ -64,7 +64,10 @@ class FoodPage extends Component {
         this.state.businessList[i].photos.length > 1
       ) {
         photoCollection.push(
-          <div className="food-page-single-image-container">
+          <div
+            className="food-page-single-image-container"
+            key={this.state.businessList[i].id}
+          >
             <img
               className="food-page-image"
               src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
