@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import Api from './api.js';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BottomBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       yelpLink: null,
+      businessPhotos: [],
     };
+  }
+
+  componentDidMount() {
+    this.getPhotos();
   }
 
   getDay = () => {
@@ -17,6 +23,23 @@ export default class BottomBar extends Component {
       return 6;
     } else {
       return date.getDay() - 1;
+    }
+  };
+
+  getPhotos = () => {
+    let businessPhotoRequests = [];
+    if (this.props.businessInfo !== null) {
+      console.log('fuck');
+      businessPhotoRequests = this.props.businessInfo.photos.map(photoLink => {
+        return Api.getBusinessPhotos(photoLink.photo_reference).then(
+          googleLink => {
+            return googleLink;
+          },
+        );
+      });
+      Promise.all(businessPhotoRequests).then(photoUrls =>
+        this.setState({businessPhotos: photoUrls}),
+      );
     }
   };
 
@@ -45,17 +68,10 @@ export default class BottomBar extends Component {
             </div>
           </div>
           <div className="bottombar-photo-row-container">
-            {this.props.businessInfo.photos.map((restaurant, index) => {
+            {this.state.businessPhotos.map((photo, index) => {
               return (
-                <div
-                  className="bottombar-photo-row"
-                  key={restaurant.photo_reference}
-                >
-                  <img
-                    className="bottombar-image"
-                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
-                    alt={''}
-                  />
+                <div className="bottombar-photo-row" key={index}>
+                  <img className="bottombar-image" src={photo} alt={''} />
                 </div>
               );
             })}
