@@ -71,7 +71,7 @@ class FoodPage extends Component {
             <img
               className="food-page-image"
               src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
-              alt={'new'}
+              alt={''}
               onClick={() => {
                 this.onClickPhoto(this.state.businessList[i]);
               }}

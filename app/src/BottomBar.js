@@ -26,23 +26,6 @@ export default class BottomBar extends Component {
     }
   };
 
-  getPhotos = () => {
-    let businessPhotoRequests = [];
-    if (this.props.businessInfo !== null) {
-      console.log('fuck');
-      businessPhotoRequests = this.props.businessInfo.photos.map(photoLink => {
-        return Api.getBusinessPhotos(photoLink.photo_reference).then(
-          googleLink => {
-            return googleLink;
-          },
-        );
-      });
-      Promise.all(businessPhotoRequests).then(photoUrls =>
-        this.setState({businessPhotos: photoUrls}),
-      );
-    }
-  };
-
   render() {
     let phone = 'N/A';
     if (this.props.businessInfo.phone) {
@@ -68,10 +51,17 @@ export default class BottomBar extends Component {
             </div>
           </div>
           <div className="bottombar-photo-row-container">
-            {this.state.businessPhotos.map((photo, index) => {
+            {this.props.businessInfo.photos.map((restaurant, index) => {
               return (
-                <div className="bottombar-photo-row" key={index}>
-                  <img className="bottombar-image" src={photo} alt={''} />
+                <div
+                  className="bottombar-photo-row"
+                  key={restaurant.photo_reference}
+                >
+                  <img
+                    className="bottombar-image"
+                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
+                    alt={''}
+                  />
                 </div>
               );
             })}
