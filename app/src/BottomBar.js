@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
-import Api from './api.js';
+import Modal from './Modal.js';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BottomBar extends Component {
@@ -10,11 +10,8 @@ export default class BottomBar extends Component {
     this.state = {
       yelpLink: null,
       businessPhotos: [],
+      modalIsOpen: false,
     };
-  }
-
-  componentDidMount() {
-    this.getPhotos();
   }
 
   getDay = () => {
@@ -26,14 +23,29 @@ export default class BottomBar extends Component {
     }
   };
 
+  openModal = photoLink => {
+    this.setState({modalIsOpen: true, photoLink});
+  };
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  };
+
   render() {
     let phone = 'N/A';
+    let modal = null;
     if (this.props.businessInfo.phone) {
       phone = ' ' + this.props.businessInfo.phone + ' ';
+    }
+    if (this.state.modalIsOpen) {
+      modal = (
+        <Modal closeModal={this.closeModal} photoLink={this.state.photoLink} />
+      );
     }
     if (this.props.businessInfo !== null) {
       return (
         <div className="bottombar">
+          {modal}
           <FontAwesomeIcon
             className="close-button-bottombar"
             icon={faTimes}
@@ -52,6 +64,7 @@ export default class BottomBar extends Component {
           </div>
           <div className="bottombar-photo-row-container">
             {this.props.businessInfo.photos.map((restaurant, index) => {
+              let photoLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`;
               return (
                 <div
                   className="bottombar-photo-row"
@@ -59,8 +72,11 @@ export default class BottomBar extends Component {
                 >
                   <img
                     className="bottombar-image"
-                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`}
+                    src={photoLink}
                     alt={''}
+                    onClick={() => {
+                      this.openModal(photoLink);
+                    }}
                   />
                 </div>
               );
