@@ -23,6 +23,35 @@ export default class BottomBar extends Component {
     }
   };
 
+  filterProps = prop => {
+    let filteredProp = '';
+    let temp = '';
+    for (let i = 0; i < prop.length; i++) {
+      if (prop[i] === ' ') {
+        filteredProp += temp + '+';
+        temp = '';
+      } else if (i === prop.length - 1) {
+        filteredProp += temp + prop[i];
+      } else {
+        temp += prop[i];
+      }
+    }
+    return filteredProp;
+  };
+
+  generateDirectionsUrl = () => {
+    let googleUrl = 'https://www.google.com/maps/dir//';
+    googleUrl +=
+      this.filterProps(this.props.businessInfo.name) +
+      ',' +
+      this.filterProps(this.props.businessInfo.address) +
+      '/@' +
+      this.props.businessInfo.coordinates.lat +
+      ',' +
+      this.props.businessInfo.coordinates.lng;
+    return googleUrl;
+  };
+
   openModal = photoLink => {
     this.setState({modalIsOpen: true, photoLink});
   };
