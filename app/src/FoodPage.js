@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Api from './api.js';
 import loading from './loading.gif';
+import {Link} from 'react-router-dom';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 class FoodPage extends Component {
@@ -68,14 +69,21 @@ class FoodPage extends Component {
             className="food-page-single-image-container"
             key={this.state.businessList[i].id}
           >
-            <img
-              className="food-page-image"
-              src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
-              alt={''}
+            <Link
+              to={{
+                pathname: `/restaurant/${this.state.businessList[i].id}`,
+                state: {business: this.state.businessList[i]},
+              }}
               onClick={() => {
                 this.onClickPhoto(this.state.businessList[i]);
               }}
-            />
+            >
+              <img
+                className="food-page-image"
+                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
+                alt={''}
+              />
+            </Link>
           </div>,
         );
       }
@@ -84,10 +92,6 @@ class FoodPage extends Component {
   };
 
   render() {
-    let styles = {};
-    if (this.props.hidden) {
-      styles.display = 'none';
-    }
     if (this.state.businessList === null) {
       return (
         <div className="food-page-loading-container">
@@ -95,11 +99,7 @@ class FoodPage extends Component {
         </div>
       );
     }
-    return (
-      <div className="food-page-images-container" style={styles}>
-        {this.getPhotos()}
-      </div>
-    );
+    return <div className="food-page-images-container">{this.getPhotos()}</div>;
   }
 }
 

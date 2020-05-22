@@ -4,6 +4,7 @@ import AreaMap from './AreaMap.js';
 import BottomBar from './BottomBar.js';
 import FoodPage from './FoodPage.js';
 import NavBar from './NavBar.js';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -66,16 +67,22 @@ class App extends Component {
         clickPhoto={this.onPhotoClick.bind(this)}
         getCoordinates={this.getCoordinates.bind(this)}
         searchKeyword={this.state.searchKeyword}
-        hidden={this.state.bottomBarOpen}
       />
     );
     return (
-      <div className="main-container">
-        <NavBar changeSearch={this.changeSearch.bind(this)} />
-        {foodPage}
-        {bottomBar}
-        {map}
-      </div>
+      <Router>
+        <div className="main-container">
+          <NavBar changeSearch={this.changeSearch.bind(this)} />
+          <Switch>
+            <Route path="/" exact>
+              {foodPage}
+            </Route>
+            <Route path="/restaurant">{bottomBar}</Route>
+          </Switch>
+          {/* {foodPage} */}
+          {/* {bottomBar} */}
+        </div>
+      </Router>
     );
   }
 }

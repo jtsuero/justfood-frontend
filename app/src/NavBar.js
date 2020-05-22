@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './just-food-logo.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {Link} from 'react-router-dom';
 
 export default class NavBar extends Component {
   constructor() {
@@ -12,7 +13,7 @@ export default class NavBar extends Component {
       radius: null,
     };
   }
-  setBusinessDetails = (e) => {
+  setBusinessDetails = e => {
     e.preventDefault();
     //pass data back to parent
     this.props.changeSearch(
@@ -22,18 +23,20 @@ export default class NavBar extends Component {
     );
   };
 
-  handleSearchChange = (e) => {
-    this.setState({ searchInput: e.target.value });
+  handleSearchChange = e => {
+    this.setState({searchInput: e.target.value});
   };
 
-  handleOpenNowChange = (event) => {
-    this.setState({ openNow: event.target.checked });
+  handleOpenNowChange = event => {
+    this.setState({openNow: event.target.checked});
   };
 
   render() {
     return (
       <div className="navbar-container">
-        <img className="navbar-logo" src={logo} alt=""></img>
+        <Link to="/" className="navbar-logo">
+          <img src={logo} alt=""></img>
+        </Link>
         <form onSubmit={this.setBusinessDetails} className="navbar-form">
           <input
             type="text"
