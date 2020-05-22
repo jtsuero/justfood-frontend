@@ -46,11 +46,6 @@ export default class BottomBar extends Component {
       return (
         <div className="bottombar">
           {modal}
-          <FontAwesomeIcon
-            className="close-button-bottombar"
-            icon={faTimes}
-            onClick={this.props.closeBottomBar}
-          />
           <div className="bottombar-business-info">
             <div className="restaurant-name">
               {this.props.businessInfo.name}
@@ -58,8 +53,17 @@ export default class BottomBar extends Component {
             <div className="business-specifics">
               Hours:
               {' ' + this.props.businessInfo.hours[this.getDay()] + ' '}
-              Phone:
-              {phone}
+              <div>
+                Phone:
+                {phone}
+              </div>
+              <div>
+                Address:
+                {' ' + this.props.businessInfo.address}
+                <div>
+                  <a href={this.generateDirectionsUrl()}>Get Directions</a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="bottombar-photo-row-container">
@@ -84,6 +88,8 @@ export default class BottomBar extends Component {
           </div>
         </div>
       );
+    } else {
+      return <div>Error Loading!</div>;
     }
   }
 }

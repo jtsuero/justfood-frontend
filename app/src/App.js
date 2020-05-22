@@ -38,8 +38,13 @@ class App extends Component {
   };
 
   render() {
-    let bottomBar = null;
-    let map = null;
+    let bottomBar = (
+      <BottomBar
+        businessInfo={this.state.currentBusiness}
+        closeBottomBar={this.closeBottomBar.bind(this)}
+      />
+    );
+    // let map = null;
 
     //alternate view once photo is clicked on landing page
     if (this.state.bottomBarOpen) {
@@ -49,12 +54,12 @@ class App extends Component {
           closeBottomBar={this.closeBottomBar.bind(this)}
         />
       );
-      map = (
-        <AreaMap
-          coordinates={this.state.coordinates}
-          restaurantCoordinates={this.state.currentBusiness}
-        />
-      );
+      // map = (
+      //   <AreaMap
+      //     coordinates={this.state.coordinates}
+      //     restaurantCoordinates={this.state.currentBusiness}
+      //   />
+      // );
     }
     let foodPage = (
       <FoodPage
