@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+// import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal.js';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
-export default class BottomBar extends Component {
+export default class BusinessPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,9 +73,9 @@ export default class BottomBar extends Component {
     }
     if (this.props.businessInfo !== null) {
       return (
-        <div className="bottombar">
+        <div className="business-page">
           {modal}
-          <div className="bottombar-business-info">
+          <div className="business-page-business-info">
             <div className="restaurant-name">
               {this.props.businessInfo.name}
             </div>
@@ -95,16 +95,16 @@ export default class BottomBar extends Component {
               </div>
             </div>
           </div>
-          <div className="bottombar-photo-row-container">
+          <div className="business-page-photo-row-container">
             {this.props.businessInfo.photos.map((restaurant, index) => {
               let photoLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`;
               return (
                 <div
-                  className="bottombar-photo-row"
+                  className="business-page-photo-row"
                   key={restaurant.photo_reference}
                 >
                   <img
-                    className="bottombar-image"
+                    className="business-page-image"
                     src={photoLink}
                     alt={''}
                     onClick={() => {
