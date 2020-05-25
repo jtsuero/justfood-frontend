@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import AreaMap from './AreaMap.js';
-import BottomBar from './BottomBar.js';
 import FoodPage from './FoodPage.js';
 import NavBar from './NavBar.js';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import BusinessPage from './BusinessPage';
 
 class App extends Component {
   constructor() {
@@ -22,10 +22,6 @@ class App extends Component {
     this.setState({searchKeyword, searchRadius, openNow});
   };
 
-  closeBottomBar = prevState => {
-    this.setState({bottomBarOpen: false});
-  };
-
   getCoordinates = (latitude, longitude) => {
     this.setState({
       coordinates: {latitude, longitude},
@@ -38,39 +34,25 @@ class App extends Component {
   };
 
   render() {
-    let bottomBar = null;
-    let map = null;
-
-    //alternate view once photo is clicked on landing page
-    if (this.state.bottomBarOpen) {
-      bottomBar = (
-        <BottomBar
-          businessInfo={this.state.currentBusiness}
-          closeBottomBar={this.closeBottomBar.bind(this)}
-        />
-      );
-      map = (
-        <AreaMap
-          coordinates={this.state.coordinates}
-          restaurantCoordinates={this.state.currentBusiness}
-        />
-      );
-    }
     let foodPage = (
       <FoodPage
         clickPhoto={this.onPhotoClick.bind(this)}
         getCoordinates={this.getCoordinates.bind(this)}
         searchKeyword={this.state.searchKeyword}
-        hidden={this.state.bottomBarOpen}
       />
     );
     return (
-      <div className="main-container">
-        <NavBar changeSearch={this.changeSearch.bind(this)} />
-        {foodPage}
-        {bottomBar}
-        {map}
-      </div>
+      <Router>
+        <div className="main-container">
+          <NavBar changeSearch={this.changeSearch.bind(this)} />
+          <Switch>
+            <Route path="/" exact>
+              {foodPage}
+            </Route>
+            <Route path="/restaurant/:id" component={BusinessPage}></Route>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
