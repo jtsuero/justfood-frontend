@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-// import AreaMap from './AreaMap.js';
 import FoodPage from './FoodPage.js';
 import NavBar from './NavBar.js';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -35,9 +34,6 @@ class App extends Component {
   };
 
   render() {
-    let businessPage = (
-      <BusinessPage businessInfo={this.state.currentBusiness} />
-    );
     let foodPage = (
       <FoodPage
         clickPhoto={this.onPhotoClick.bind(this)}
@@ -53,10 +49,8 @@ class App extends Component {
             <Route path="/" exact>
               {foodPage}
             </Route>
-            <Route path="/restaurant">{bottomBar}</Route>
+            <Route path="/restaurant/:id" component={BusinessPage}></Route>
           </Switch>
-          {/* {foodPage} */}
-          {/* {bottomBar} */}
         </div>
       </Router>
     );

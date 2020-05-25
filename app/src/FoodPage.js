@@ -72,7 +72,6 @@ class FoodPage extends Component {
             <Link
               to={{
                 pathname: `/restaurant/${this.state.businessList[i].id}`,
-                state: {business: this.state.businessList[i]},
               }}
               onClick={() => {
                 this.onClickPhoto(this.state.businessList[i]);

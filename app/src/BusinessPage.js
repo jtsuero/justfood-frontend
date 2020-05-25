@@ -2,17 +2,31 @@ import React, {Component} from 'react';
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 // import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal.js';
+import Api from './api.js';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BusinessPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      yelpLink: null,
       businessPhotos: [],
+      businessInfo: null,
       modalIsOpen: false,
     };
   }
+
+  componentDidMount() {
+    const {
+      match: {params},
+    } = this.props;
+    this.getBusinessInfo(params.id);
+  }
+
+  getBusinessInfo = businessId => {
+    Api.getBusiness(businessId).then(businessInfo =>
+      this.setState({businessInfo: businessInfo.business.json.result}),
+    );
+  };
 
   getDay = () => {
     const date = new Date();
@@ -42,13 +56,13 @@ export default class BusinessPage extends Component {
   generateDirectionsUrl = () => {
     let googleUrl = 'https://www.google.com/maps/dir//';
     googleUrl +=
-      this.filterProps(this.props.businessInfo.name) +
+      this.filterProps(this.state.businessInfo.name) +
       ',' +
-      this.filterProps(this.props.businessInfo.address) +
+      this.filterProps(this.state.businessInfo.formatted_address) +
       '/@' +
-      this.props.businessInfo.coordinates.lat +
+      this.state.businessInfo.geometry.location.lat +
       ',' +
-      this.props.businessInfo.coordinates.lng;
+      this.state.businessInfo.geometry.location.lng;
     return googleUrl;
   };
 
@@ -63,32 +77,39 @@ export default class BusinessPage extends Component {
   render() {
     let phone = 'N/A';
     let modal = null;
-    if (this.props.businessInfo.phone) {
-      phone = ' ' + this.props.businessInfo.phone + ' ';
+    if (
+      this.state.businessInfo &&
+      this.state.businessInfo.formatted_phone_number
+    ) {
+      phone = ' ' + this.state.businessInfo.formatted_phone_number + ' ';
     }
     if (this.state.modalIsOpen) {
       modal = (
         <Modal closeModal={this.closeModal} photoLink={this.state.photoLink} />
       );
     }
-    if (this.props.businessInfo !== null) {
+    if (this.state.businessInfo !== null) {
       return (
         <div className="business-page">
           {modal}
           <div className="business-page-business-info">
             <div className="restaurant-name">
-              {this.props.businessInfo.name}
+              {this.state.businessInfo.name}
             </div>
             <div className="business-specifics">
               Hours:
-              {' ' + this.props.businessInfo.hours[this.getDay()] + ' '}
+              {' ' +
+                this.state.businessInfo.opening_hours.weekday_text[
+                  this.getDay()
+                ] +
+                ' '}
               <div>
                 Phone:
                 {phone}
               </div>
               <div>
                 Address:
-                {' ' + this.props.businessInfo.address}
+                {' ' + this.state.businessInfo.formatted_address}
                 <div>
                   <a href={this.generateDirectionsUrl()}>Get Directions</a>
                 </div>
@@ -96,7 +117,7 @@ export default class BusinessPage extends Component {
             </div>
           </div>
           <div className="business-page-photo-row-container">
-            {this.props.businessInfo.photos.map((restaurant, index) => {
+            {this.state.businessInfo.photos.map((restaurant, index) => {
               let photoLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`;
               return (
                 <div
