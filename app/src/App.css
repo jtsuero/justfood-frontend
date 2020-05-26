@@ -184,9 +184,16 @@
   justify-content: space-around;
 }
 
+.navbar-logo-container {
+  display: flex;
+  align-items: center;
+  max-width: 50%;
+  height: 10vh;
+}
+
 .navbar-logo {
   height: auto;
-  max-width: 50%;
+  max-width: 100%;
   max-height: 10vh;
 }
 
@@ -239,7 +246,7 @@
 
 @media (min-width: 481px) and (max-width: 767px) {
   .navbar-logo {
-    max-width: 25%;
+    max-width: 100%;
   }
 
   .modal-food-image {

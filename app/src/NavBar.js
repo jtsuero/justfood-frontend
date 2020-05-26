@@ -34,8 +34,8 @@ export default class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
-          <img src={logo} alt=""></img>
+        <Link to="/" className="navbar-logo-container">
+          <img className="navbar-logo" src={logo} alt=""></img>
         </Link>
         <form onSubmit={this.setBusinessDetails} className="navbar-form">
           <input
