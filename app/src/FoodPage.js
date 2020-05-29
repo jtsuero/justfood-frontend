@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Api from './api.js';
-import loading from './loading.gif';
+import LoadingPage from './LoadingPage.js';
 import {Link} from 'react-router-dom';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
@@ -92,11 +92,7 @@ class FoodPage extends Component {
 
   render() {
     if (this.state.businessList === null) {
-      return (
-        <div className="food-page-loading-container">
-          <img className="food-page-loading" src={loading} alt="none"></img>
-        </div>
-      );
+      return <LoadingPage />;
     }
     return <div className="food-page-images-container">{this.getPhotos()}</div>;
   }

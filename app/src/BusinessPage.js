@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-// import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal.js';
 import Api from './api.js';
+import LoadingPage from './LoadingPage.js';
 const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BusinessPage extends Component {
@@ -144,7 +143,7 @@ export default class BusinessPage extends Component {
         </div>
       );
     } else {
-      return <div>Error Loading!</div>;
+      return <LoadingPage />;
     }
   }
 }
