@@ -34,6 +34,9 @@ export default class Modal extends Component {
       //left arrow key
       this.changePhoto(this.state.photoIndex - 1);
     }
+    if (event.keyCode === 27) {
+      this.props.closeModal();
+    }
   };
 
   changePhoto = photoIndex => {
