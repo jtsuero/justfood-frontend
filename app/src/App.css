@@ -144,6 +144,25 @@
   right: 0;
   padding: 10px;
   font-size: 5em;
+  color: white;
+}
+
+.modal-photo-change-button-left {
+  position: fixed;
+  bottom: 50%;
+  left: 0;
+  padding: 10px;
+  color: white;
+  font-size: 5em;
+}
+
+.modal-photo-change-button-right {
+  position: fixed;
+  bottom: 50%;
+  right: 0;
+  padding: 10px;
+  color: white;
+  font-size: 5em;
 }
 
 .modal-background {
@@ -152,7 +171,7 @@
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,6 +246,16 @@
 
 /* media query for mobile phone portrait mode  */
 @media (min-width: 320px) and (max-width: 480px) {
+  .modal-photo-change-button-right {
+    bottom: 0;
+    right: 30%;
+  }
+
+  .modal-photo-change-button-left {
+    bottom: 0;
+    left: 30%;
+  }
+
   .business-page-photo-row {
     max-width: 50%;
     flex-grow: 1;
@@ -244,6 +273,7 @@
   }
 }
 
+/* media query for mobile phone landscape mode  */
 @media (min-width: 481px) and (max-width: 767px) {
   .navbar-logo {
     max-width: 100%;
