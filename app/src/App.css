@@ -154,6 +154,7 @@
   padding: 10px;
   color: white;
   font-size: 5em;
+  cursor: pointer;
 }
 
 .modal-photo-change-button-right {
@@ -163,6 +164,15 @@
   padding: 10px;
   color: white;
   font-size: 5em;
+  cursor: pointer;
+}
+
+.modal-photo-change-button-right:hover {
+  color: grey;
+}
+
+.modal-photo-change-button-left:hover {
+  color: grey;
 }
 
 .modal-background {
