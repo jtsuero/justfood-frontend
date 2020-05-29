@@ -12,6 +12,7 @@ export default class BusinessPage extends Component {
       businessPhotos: [],
       businessInfo: null,
       modalIsOpen: false,
+      photoIndex: null,
     };
   }
 
@@ -66,8 +67,8 @@ export default class BusinessPage extends Component {
     return googleUrl;
   };
 
-  openModal = photoLink => {
-    this.setState({modalIsOpen: true, photoLink});
+  openModal = photoIndex => {
+    this.setState({modalIsOpen: true, photoIndex});
   };
 
   closeModal = () => {
@@ -85,7 +86,11 @@ export default class BusinessPage extends Component {
     }
     if (this.state.modalIsOpen) {
       modal = (
-        <Modal closeModal={this.closeModal} photoLink={this.state.photoLink} />
+        <Modal
+          closeModal={this.closeModal}
+          photos={this.state.businessInfo.photos}
+          photoIndex={this.state.photoIndex}
+        />
       );
     }
     if (this.state.businessInfo !== null) {
@@ -129,7 +134,7 @@ export default class BusinessPage extends Component {
                     src={photoLink}
                     alt={''}
                     onClick={() => {
-                      this.openModal(photoLink);
+                      this.openModal(index);
                     }}
                   />
                 </div>
