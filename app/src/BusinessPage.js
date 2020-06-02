@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Modal from './Modal.js';
 import Api from './api.js';
 import LoadingPage from './LoadingPage.js';
-const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class BusinessPage extends Component {
   constructor(props) {
@@ -121,13 +120,10 @@ export default class BusinessPage extends Component {
             </div>
           </div>
           <div className="business-page-photo-row-container">
-            {this.state.businessInfo.photos.map((restaurant, index) => {
-              let photoLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`;
+            {this.state.businessInfo.photos.map((photoUrl, index) => {
+              let photoLink = photoUrl;
               return (
-                <div
-                  className="business-page-photo-row"
-                  key={restaurant.photo_reference}
-                >
+                <div className="business-page-photo-row">
                   <img
                     className="business-page-image"
                     src={photoLink}

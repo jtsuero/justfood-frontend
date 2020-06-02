@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Api from './api.js';
 import LoadingPage from './LoadingPage.js';
 import {Link} from 'react-router-dom';
-const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 class FoodPage extends Component {
   constructor() {
@@ -13,6 +12,7 @@ class FoodPage extends Component {
       searchKeyword: 'restaurant',
       searchRadius: 5000,
       businessList: null,
+      photoLinks: null,
     };
   }
 
@@ -57,36 +57,31 @@ class FoodPage extends Component {
   };
 
   getPhotos = () => {
-    let photoCollection = [];
     // gets first photo of 20 businesses
-    for (let i = 0; i < this.state.businessList.length; i++) {
-      if (
-        this.state.businessList[i].photos &&
-        this.state.businessList[i].photos.length > 1
-      ) {
-        photoCollection.push(
-          <div
-            className="food-page-single-image-container"
-            key={this.state.businessList[i].id}
-          >
+    const photoCollection = this.state.businessList.map(business => {
+      if (business.photos && business.photos[1]) {
+        return (
+          <div className="food-page-single-image-container" key={business.id}>
             <Link
               to={{
-                pathname: `/restaurant/${this.state.businessList[i].id}`,
+                pathname: `/restaurant/${business.id}`,
               }}
               onClick={() => {
-                this.onClickPhoto(this.state.businessList[i]);
+                this.onClickPhoto(business);
               }}
             >
               <img
                 className="food-page-image"
-                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.state.businessList[i].photos[1].photo_reference}&key=${photoKey}`}
+                src={business.photos[1]}
                 alt={''}
               />
             </Link>
-          </div>,
+          </div>
         );
+      } else {
+        return null;
       }
-    }
+    });
     return photoCollection;
   };
 

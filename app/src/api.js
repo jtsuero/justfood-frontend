@@ -17,7 +17,7 @@ class Api {
 
   getBusinessPhotos = photoreference => {
     return fetch(
-      `${HOST_URL}/restaurants/photos/?photoreference=${photoreference}`,
+      `${HOST_URL}/restaurants/photos/?photo_reference=${photoreference}`,
       {
         method: 'get',
         mode: 'cors',
