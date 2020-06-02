@@ -28,12 +28,17 @@ class FoodPage extends Component {
 
   getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const longitude = position.coords.longitude;
-        const latitude = position.coords.latitude;
-        this.props.getCoordinates(latitude, longitude);
-        this.setState({longitude, latitude}, this.getBusinesses);
-      });
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          this.props.getCoordinates(latitude, longitude);
+          this.setState({longitude, latitude}, this.getBusinesses);
+        },
+        err => {
+          console.log('error getting location', err);
+        },
+      );
     } else {
       console.log('error with navigator');
     }
