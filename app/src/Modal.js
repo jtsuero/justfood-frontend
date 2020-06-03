@@ -35,6 +35,7 @@ export default class Modal extends Component {
       this.changePhoto(this.state.photoIndex - 1);
     }
     if (event.keyCode === 27) {
+      //escape key
       this.props.closeModal();
     }
   };
@@ -47,7 +48,7 @@ export default class Modal extends Component {
   getPhoto = (photoIndex = this.props.photoIndex) => {
     if (photoIndex === -1 || photoIndex >= this.props.photos.length)
       return null;
-    let photoLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photos[photoIndex].photo_reference}&key=${photoKey}`;
+    let photoLink = this.props.photos[photoIndex];
     this.setState({photoLink, photoIndex});
   };
 

@@ -7,7 +7,6 @@ export default class BusinessPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      businessPhotos: [],
       businessInfo: null,
       modalIsOpen: false,
       photoIndex: null,
