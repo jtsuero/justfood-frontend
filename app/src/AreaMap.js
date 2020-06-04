@@ -34,7 +34,6 @@ class AreaMap extends Component {
         lng: this.state.longitude,
       },
       zoom: this.state.zoom,
-      key: 'AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic',
     };
 
     const PositionMarker = ({text}) => (

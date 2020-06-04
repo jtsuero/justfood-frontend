@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-// import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal.js';
 import Api from './api.js';
-const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
+import LoadingPage from './LoadingPage.js';
 
 export default class BusinessPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      businessPhotos: [],
       businessInfo: null,
       modalIsOpen: false,
+      photoIndex: null,
     };
   }
 
@@ -66,8 +64,8 @@ export default class BusinessPage extends Component {
     return googleUrl;
   };
 
-  openModal = photoLink => {
-    this.setState({modalIsOpen: true, photoLink});
+  openModal = photoIndex => {
+    this.setState({modalIsOpen: true, photoIndex});
   };
 
   closeModal = () => {
@@ -85,7 +83,11 @@ export default class BusinessPage extends Component {
     }
     if (this.state.modalIsOpen) {
       modal = (
-        <Modal closeModal={this.closeModal} photoLink={this.state.photoLink} />
+        <Modal
+          closeModal={this.closeModal}
+          photos={this.state.businessInfo.photos}
+          photoIndex={this.state.photoIndex}
+        />
       );
     }
     if (this.state.businessInfo !== null) {
@@ -117,19 +119,15 @@ export default class BusinessPage extends Component {
             </div>
           </div>
           <div className="business-page-photo-row-container">
-            {this.state.businessInfo.photos.map((restaurant, index) => {
-              let photoLink = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photo_reference}&key=${photoKey}`;
+            {this.state.businessInfo.photos.map((photoUrl, index) => {
               return (
-                <div
-                  className="business-page-photo-row"
-                  key={restaurant.photo_reference}
-                >
+                <div className="business-page-photo-row" key={index}>
                   <img
                     className="business-page-image"
-                    src={photoLink}
+                    src={photoUrl}
                     alt={''}
                     onClick={() => {
-                      this.openModal(photoLink);
+                      this.openModal(index);
                     }}
                   />
                 </div>
@@ -139,7 +137,7 @@ export default class BusinessPage extends Component {
         </div>
       );
     } else {
-      return <div>Error Loading!</div>;
+      return <LoadingPage />;
     }
   }
 }

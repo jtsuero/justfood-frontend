@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import logo from './just-food-logo.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,6 +21,7 @@ export default class NavBar extends Component {
       this.state.radius,
       this.state.openNow,
     );
+    this.props.history.push('/');
   };
 
   handleSearchChange = e => {
@@ -34,8 +35,8 @@ export default class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
-          <img src={logo} alt=""></img>
+        <Link to="/" className="navbar-logo-container">
+          <img className="navbar-logo" src={logo} alt=""></img>
         </Link>
         <form onSubmit={this.setBusinessDetails} className="navbar-form">
           <input
@@ -51,3 +52,4 @@ export default class NavBar extends Component {
     );
   }
 }
+export default withRouter(NavBar);
