@@ -15,19 +15,6 @@ class Api {
     ).then(res => res.json());
   };
 
-  getBusinessPhotos = photoreference => {
-    return fetch(
-      `${HOST_URL}/restaurants/photos/?photo_reference=${photoreference}`,
-      {
-        method: 'get',
-        mode: 'cors',
-        headers: {'Content-Type': 'application/json'},
-      },
-    )
-      .then(res => res.text())
-      .catch(err => console.log(err));
-  };
-
   getBusiness = businessId => {
     return fetch(`${HOST_URL}/restaurants/place/?businessId=${businessId}`, {
       method: 'get',
