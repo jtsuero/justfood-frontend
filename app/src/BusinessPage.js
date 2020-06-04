@@ -120,12 +120,11 @@ export default class BusinessPage extends Component {
           </div>
           <div className="business-page-photo-row-container">
             {this.state.businessInfo.photos.map((photoUrl, index) => {
-              let photoLink = photoUrl;
               return (
-                <div className="business-page-photo-row">
+                <div className="business-page-photo-row" key={index}>
                   <img
                     className="business-page-image"
-                    src={photoLink}
+                    src={photoUrl}
                     alt={''}
                     onClick={() => {
                       this.openModal(index);
