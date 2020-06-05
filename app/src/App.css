@@ -227,12 +227,14 @@
 }
 
 .navbar-search-button {
-  background-color: white;
+  background-color: transparent;
   color: #03989e;
   font-size: 16px;
   border: transparent;
   width: 50px;
   border-radius: 20px;
+  position: relative;
+  left: -35px;
 }
 
 .navbar-searchbox {
