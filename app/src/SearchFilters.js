@@ -33,7 +33,6 @@ class SearchFilters extends Component {
   };
 
   openNowButton = () => {
-    let style;
     let openNowButton = (
       <div
         className="search-open-now"
@@ -46,7 +45,6 @@ class SearchFilters extends Component {
     );
     //button will indicate also showing restaurants that are closed
     if (!this.props.openNow) {
-      style = {background: 'white'};
       openNowButton = (
         <div
           className="search-open-now"
