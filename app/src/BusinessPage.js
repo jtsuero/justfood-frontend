@@ -75,11 +75,17 @@ export default class BusinessPage extends Component {
   render() {
     let phone = 'N/A';
     let modal = null;
+    let openingHours = 'N/A';
     if (
       this.state.businessInfo &&
       this.state.businessInfo.formatted_phone_number
     ) {
       phone = ' ' + this.state.businessInfo.formatted_phone_number + ' ';
+    }
+    if (this.state.businessInfo && this.state.businessInfo.opening_hours) {
+      openingHours = this.state.businessInfo.opening_hours.weekday_text[
+        this.getDay()
+      ];
     }
     if (this.state.modalIsOpen) {
       modal = (
@@ -100,11 +106,7 @@ export default class BusinessPage extends Component {
             </div>
             <div className="business-specifics">
               Hours:
-              {' ' +
-                this.state.businessInfo.opening_hours.weekday_text[
-                  this.getDay()
-                ] +
-                ' '}
+              {' ' + openingHours + ' '}
               <div>
                 Phone:
                 {phone}
@@ -112,7 +114,7 @@ export default class BusinessPage extends Component {
               <div>
                 Address:
                 {' ' + this.state.businessInfo.formatted_address}
-                <div>
+                <div className="business-page-google-url">
                   <a href={this.generateDirectionsUrl()}>Get Directions</a>
                 </div>
               </div>

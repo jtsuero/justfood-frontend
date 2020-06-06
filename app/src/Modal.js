@@ -26,6 +26,7 @@ export default class Modal extends Component {
   }
 
   handleKeyPress = event => {
+    event.preventDefault();
     if (event.keyCode === 39) {
       //right arrow key
       this.changePhoto(this.state.photoIndex + 1);

@@ -24,8 +24,12 @@
 
 .business-page {
   width: 100%;
-  background-color: white;
-  overflow: auto;
+  background-color: #fff;
+  overflow-x: hidden;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 20%;
 }
 
 .business-page-photo-row-container {
@@ -33,6 +37,9 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  flex: 1;
 }
 
 .business-page-photo-row {
@@ -48,18 +55,25 @@
   height: 100%;
 }
 
+.business-page-google-url {
+  margin-top: 0.5em;
+}
+
 .restaurant-name {
   font-size: 2em;
   color: #03989e;
+  margin-bottom: 0.5em;
 }
 
 .business-specifics {
   font-size: 1em;
   color: #03989e;
+  font-size: 0.8em;
 }
 
 .business-page-business-info {
   font-family: sans-serif;
+  padding: 1em;
 }
 
 .filler {
@@ -201,14 +215,16 @@
 .navbar-container {
   align-items: center;
   display: flex;
-  height: 12vh;
+  min-height: 18%;
   width: 100%;
-  padding: 1px;
   background-color: #ffde59;
+  padding: 1.5em 0.5em;
+  justfy-content: center;
 }
 
 .navbar-form {
   display: flex;
+  margin-bottom: 1em;
 }
 
 .navbar-logo-container {
@@ -251,7 +267,7 @@
 
 .navbar-search {
   position: relative;
-  top: 20%;
+  top: 23%;
   flex: 1;
   max-width: 400px;
   width: 50%;
@@ -263,7 +279,7 @@
 
 .search-dropdown {
   position: absolute;
-  top: 4rem;
+  top: 5rem;
   width: auto;
   height: auto;
   transform: translate(50%);
@@ -272,6 +288,7 @@
   border: 1px black solid;
   padding: 1rem;
   overflow: hidden;
+  background: white;
 }
 
 .search-dropdown-button {
@@ -309,6 +326,9 @@
 
 /* media query for mobile phone portrait mode  */
 @media (min-width: 320px) and (max-width: 480px) {
+  .business-page {
+    padding: 0;
+  }
   .modal-photo-change-button-right {
     bottom: 0;
     right: 30%;
@@ -333,11 +353,15 @@
     height: auto;
     max-height: 70%;
     max-width: 90%;
+    user-select: none;
   }
 }
 
 /* media query for mobile phone landscape mode  */
 @media (min-width: 481px) and (max-width: 767px) {
+  .business-page {
+    padding: 0 10%;
+  }
   .navbar-logo {
     max-width: 100%;
   }
