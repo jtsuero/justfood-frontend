@@ -208,9 +208,7 @@
 }
 
 .navbar-form {
-  max-width: 50%;
   display: flex;
-  justify-content: space-around;
 }
 
 .navbar-logo-container {
@@ -227,19 +225,21 @@
 }
 
 .navbar-search-button {
-  background-color: white;
+  background-color: transparent;
   color: #03989e;
   font-size: 16px;
   border: transparent;
   width: 50px;
   border-radius: 20px;
+  position: relative;
+  left: -35px;
 }
 
 .navbar-searchbox {
   width: 100%;
   border-radius: 15px;
   border: 1px #03989e solid;
-  height: 20px;
+  height: 2rem;
   padding: 10px;
   padding-right: 40px;
 }
@@ -249,9 +249,62 @@
   font-size: 16px;
 }
 
-.yelp-logo {
-  height: 25px;
+.navbar-search {
+  position: relative;
+  top: 20%;
+  flex: 1;
+  max-width: 400px;
+  width: 50%;
+}
+
+.search-dropdown-container {
+  display: flex;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 4rem;
   width: auto;
+  height: auto;
+  transform: translate(50%);
+  border-radius: 5px;
+  box-shadow: 0 0 5px;
+  border: 1px black solid;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.search-dropdown-button {
+  padding: 5px;
+  margin: 1px;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+}
+
+.search-distance-button {
+  padding: 5px;
+  margin: 1px;
+  border-radius: 5px;
+  border: 1px black solid;
+  background: white;
+  cursor: pointer;
+}
+
+.search-distance-button.active {
+  background: #03989e;
+}
+
+.search-open-now {
+  padding: 5px;
+  margin: 1px;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+}
+
+.search-open-now.active {
+  background: #03989e;
 }
 
 /* media query for mobile phone portrait mode  */

@@ -5,8 +5,13 @@ const HOST_URL =
 
 class Api {
   getBusinesses = searchParams => {
+    const METERS_PER_MILE = 1609.34;
+    const radius = searchParams.radius * METERS_PER_MILE;
+    if (!searchParams.keyword) {
+      searchParams.keyword = 'restaurants';
+    }
     return fetch(
-      `${HOST_URL}/restaurants/?long=${searchParams.longitude}&lat=${searchParams.latitude}&keyword=${searchParams.keyword}&radius=${searchParams.radius}`,
+      `${HOST_URL}/restaurants/?long=${searchParams.longitude}&lat=${searchParams.latitude}&keyword=${searchParams.keyword}&radius=${radius}&open=${searchParams.openNow}`,
       {
         method: 'get',
         mode: 'cors',

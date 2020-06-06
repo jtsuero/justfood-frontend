@@ -3,14 +3,13 @@ import logo from './just-food-logo.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {Link, withRouter} from 'react-router-dom';
+import SearchFilters from './SearchFilters.js';
 
 class NavBar extends Component {
   constructor() {
     super();
     this.state = {
       searchInput: null,
-      openNow: true,
-      radius: null,
     };
   }
   setBusinessDetails = e => {
@@ -18,8 +17,8 @@ class NavBar extends Component {
     //pass data back to parent
     this.props.changeSearch(
       this.state.searchInput,
-      this.state.radius,
-      this.state.openNow,
+      this.props.searchRadius,
+      this.props.openNow,
     );
     this.props.history.push('/');
   };
@@ -28,8 +27,16 @@ class NavBar extends Component {
     this.setState({searchInput: e.target.value});
   };
 
-  handleOpenNowChange = event => {
-    this.setState({openNow: event.target.checked});
+  handleOpenNowChange = openStatus => {
+    this.props.changeSearch(
+      this.state.searchInput,
+      this.props.searchRadius,
+      openStatus,
+    );
+  };
+
+  handleDistanceClick = miles => {
+    this.props.changeSearch(this.state.searchInput, miles, this.props.openNow);
   };
 
   render() {
@@ -38,16 +45,28 @@ class NavBar extends Component {
         <Link to="/" className="navbar-logo-container">
           <img className="navbar-logo" src={logo} alt=""></img>
         </Link>
-        <form onSubmit={this.setBusinessDetails} className="navbar-form">
-          <input
-            type="text"
-            onChange={this.handleSearchChange}
-            className="navbar-searchbox"
+        <div className="navbar-search">
+          <form onSubmit={this.setBusinessDetails} className="navbar-form">
+            <input
+              type="text"
+              onChange={this.handleSearchChange}
+              className="navbar-searchbox"
+            />
+            <button
+              type="submit"
+              value="Search"
+              className="navbar-search-button"
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </form>
+          <SearchFilters
+            handleOpenNowChange={this.handleOpenNowChange.bind(this)}
+            handleDistanceClick={this.handleDistanceClick.bind(this)}
+            openNow={this.props.openNow}
+            searchRadius={this.props.searchRadius}
           />
-          <button type="submit" value="Search" className="navbar-search-button">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </form>
+        </div>
       </div>
     );
   }
