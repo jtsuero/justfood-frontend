@@ -112,7 +112,7 @@ export default class BusinessPage extends Component {
               <div>
                 Address:
                 {' ' + this.state.businessInfo.formatted_address}
-                <div>
+                <div className="business-page-google-url">
                   <a href={this.generateDirectionsUrl()}>Get Directions</a>
                 </div>
               </div>
