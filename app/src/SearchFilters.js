@@ -34,14 +34,13 @@ class SearchFilters extends Component {
 
   openNowButton = () => {
     //button will indicate also showing restaurants that are closed
-    let style = null;
-    if (!this.props.openNow) {
-      style = {background: 'white'};
+    let cls = 'search-open-now';
+    if (this.props.openNow) {
+      cls += ' active';
     }
     return (
       <div
-        className="search-open-now"
-        style={style}
+        className={cls}
         onClick={() => {
           this.props.handleOpenNowChange(!this.props.openNow);
         }}

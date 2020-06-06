@@ -299,8 +299,12 @@
   padding: 5px;
   margin: 1px;
   border-radius: 5px;
-  background: #03989e;
+  background: white;
   cursor: pointer;
+}
+
+.search-open-now.active {
+  background: #03989e;
 }
 
 /* media query for mobile phone portrait mode  */
