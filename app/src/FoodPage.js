@@ -19,7 +19,13 @@ class FoodPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.searchKeyword !== prevProps.searchKeyword) {
+    if (
+      this.props.latitude !== prevProps.latitude ||
+      this.props.longitude !== prevProps.longitude ||
+      this.props.searchRadius !== prevProps.searchRadius ||
+      this.props.searchKeyword !== prevProps.searchKeyword ||
+      this.props.openNow !== prevProps.openNow
+    ) {
       this.getBusinesses();
     }
   }
