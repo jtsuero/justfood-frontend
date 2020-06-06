@@ -17,7 +17,7 @@ class FoodPage extends Component {
   }
 
   componentDidMount() {
-    this.getLocation();
+    this.getBusinesses();
   }
 
   componentDidUpdate(prevProps) {
@@ -26,30 +26,13 @@ class FoodPage extends Component {
     }
   }
 
-  getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const longitude = position.coords.longitude;
-          const latitude = position.coords.latitude;
-          this.props.getCoordinates(latitude, longitude);
-          this.setState({longitude, latitude}, this.getBusinesses);
-        },
-        err => {
-          console.log('error getting location', err);
-        },
-      );
-    } else {
-      console.log('error with navigator');
-    }
-  };
-
   getBusinesses = () => {
     const searchParams = {
-      latitude: this.state.latitude,
-      longitude: this.state.longitude,
-      radius: this.state.searchRadius,
+      latitude: this.props.latitude,
+      longitude: this.props.longitude,
+      radius: this.props.searchRadius,
       keyword: this.props.searchKeyword,
+      openNow: this.props.openNow,
     };
     Api.getBusinesses(searchParams).then(data =>
       this.setState({businessList: data.businesses}),

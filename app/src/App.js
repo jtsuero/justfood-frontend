@@ -4,19 +4,41 @@ import FoodPage from './FoodPage.js';
 import NavBar from './NavBar.js';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import BusinessPage from './BusinessPage';
+import LoadingPage from './LoadingPage';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       currentBusiness: null,
-      bottomBarOpen: false,
       searchKeyword: 'restaurants',
-      searchRadius: 5000,
+      searchRadius: 2,
       openNow: true,
       coordinates: null,
     };
   }
+
+  componentDidMount() {
+    this.getLocation();
+  }
+
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          this.getCoordinates(latitude, longitude);
+          this.setState({longitude, latitude});
+        },
+        err => {
+          console.log('error getting location', err);
+        },
+      );
+    } else {
+      console.log('error with navigator');
+    }
+  };
 
   changeSearch = (searchKeyword, searchRadius, openNow) => {
     this.setState({searchKeyword, searchRadius, openNow});
@@ -34,13 +56,20 @@ class App extends Component {
   };
 
   render() {
-    let foodPage = (
-      <FoodPage
-        clickPhoto={this.onPhotoClick.bind(this)}
-        getCoordinates={this.getCoordinates.bind(this)}
-        searchKeyword={this.state.searchKeyword}
-      />
-    );
+    let foodPage = <LoadingPage />;
+    if (this.state.longitude && this.state.latitude) {
+      foodPage = (
+        <FoodPage
+          clickPhoto={this.onPhotoClick.bind(this)}
+          getCoordinates={this.getCoordinates.bind(this)}
+          searchKeyword={this.state.searchKeyword}
+          searchRadius={this.state.searchRadius}
+          openNow={this.state.openNow}
+          latitude={this.state.latitude}
+          longitude={this.state.longitude}
+        />
+      );
+    }
     return (
       <Router>
         <div className="main-container">
