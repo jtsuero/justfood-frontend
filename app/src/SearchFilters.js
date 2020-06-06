@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import SearchDistanceButton from './SearchDistanceButton';
 
 class SearchFilters extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       distanceOpen: false,
     };
