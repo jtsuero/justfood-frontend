@@ -3,14 +3,13 @@ import logo from './just-food-logo.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {Link, withRouter} from 'react-router-dom';
+import SearchFilters from './SearchFilters.js';
 
 class NavBar extends Component {
   constructor() {
     super();
     this.state = {
       searchInput: null,
-      openNow: true,
-      radius: null,
     };
   }
   setBusinessDetails = e => {

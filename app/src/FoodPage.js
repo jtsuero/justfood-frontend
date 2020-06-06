@@ -9,8 +9,6 @@ class FoodPage extends Component {
     this.state = {
       longitude: null,
       latitude: null,
-      searchKeyword: 'restaurant',
-      searchRadius: 5000,
       businessList: null,
       photoLinks: null,
     };

@@ -52,7 +52,7 @@ class App extends Component {
 
   //enables business data to be passed BottomBar component
   onPhotoClick = newBusiness => {
-    this.setState({currentBusiness: newBusiness, bottomBarOpen: true});
+    this.setState({currentBusiness: newBusiness});
   };
 
   render() {
