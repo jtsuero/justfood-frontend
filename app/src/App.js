@@ -73,7 +73,11 @@ class App extends Component {
     return (
       <Router>
         <div className="main-container">
-          <NavBar changeSearch={this.changeSearch.bind(this)} />
+          <NavBar
+            changeSearch={this.changeSearch.bind(this)}
+            searchRadius={this.state.searchRadius}
+            openNow={this.state.openNow}
+          />
           <Switch>
             <Route path="/" exact>
               {foodPage}
