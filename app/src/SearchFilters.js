@@ -33,9 +33,15 @@ class SearchFilters extends Component {
   };
 
   openNowButton = () => {
-    let openNowButton = (
+    //button will indicate also showing restaurants that are closed
+    let style = null;
+    if (!this.props.openNow) {
+      style = {background: 'white'};
+    }
+    return (
       <div
         className="search-open-now"
+        style={style}
         onClick={() => {
           this.props.handleOpenNowChange(!this.props.openNow);
         }}
@@ -43,21 +49,6 @@ class SearchFilters extends Component {
         Open Now
       </div>
     );
-    //button will indicate also showing restaurants that are closed
-    if (!this.props.openNow) {
-      openNowButton = (
-        <div
-          className="search-open-now"
-          style={{background: 'white'}}
-          onClick={() => {
-            this.props.handleOpenNowChange(!this.props.openNow);
-          }}
-        >
-          Open Now
-        </div>
-      );
-    }
-    return openNowButton;
   };
 
   render() {
