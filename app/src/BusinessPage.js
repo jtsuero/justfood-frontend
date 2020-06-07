@@ -73,14 +73,17 @@ export default class BusinessPage extends Component {
   };
 
   render() {
-    let phone = 'N/A';
+    let clickablePhoneNumber = 'N/A';
     let modal = null;
     let openingHours = 'N/A';
     if (
       this.state.businessInfo &&
       this.state.businessInfo.formatted_phone_number
     ) {
-      phone = ' ' + this.state.businessInfo.formatted_phone_number + ' ';
+      let phoneNumber = this.state.businessInfo.formatted_phone_number + ' ';
+      clickablePhoneNumber = (
+        <a href={`tel:${this.state.int_phone}`}>{phoneNumber}</a>
+      );
     }
     if (this.state.businessInfo && this.state.businessInfo.opening_hours) {
       openingHours = this.state.businessInfo.opening_hours.weekday_text[
@@ -109,7 +112,7 @@ export default class BusinessPage extends Component {
               {' ' + openingHours + ' '}
               <div>
                 Phone:
-                {phone}
+                {clickablePhoneNumber}
               </div>
               <div>
                 Address:
