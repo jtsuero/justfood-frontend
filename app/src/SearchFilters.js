@@ -15,7 +15,10 @@ class SearchFilters extends Component {
       return (
         <SearchDistanceButton
           miles={miles}
-          onClick={this.props.handleDistanceClick.bind(this, miles)}
+          onClick={() => {
+            this.props.handleDistanceClick(miles);
+            this.closeDropdown();
+          }}
           active={this.props.searchRadius === miles}
           key={miles}
         />
@@ -26,6 +29,10 @@ class SearchFilters extends Component {
         <div className="search-dropdown-distance">{distanceButtons}</div>
       </div>
     );
+  };
+
+  closeDropdown = () => {
+    this.setState({distanceOpen: false});
   };
 
   openNowButton = () => {
