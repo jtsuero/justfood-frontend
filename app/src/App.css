@@ -118,6 +118,17 @@
   vertical-align: bottom;
   height: 100%;
 }
+.food-page-no-results-container {
+  width: 100%;
+  height: 100%;
+}
+
+.food-page-no-results {
+  font-size: 2em;
+  color: #03989e;
+  text-align: center;
+  padding: 30px;
+}
 
 .map-food-image {
   box-shadow: 0 0 7px;
