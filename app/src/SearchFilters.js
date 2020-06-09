@@ -32,7 +32,9 @@ class SearchFilters extends Component {
   };
 
   closeDropdown = () => {
-    this.setState({distanceOpen: false});
+    setTimeout(() => {
+      this.setState({distanceOpen: false});
+    }, 100);
   };
 
   openNowButton = () => {
