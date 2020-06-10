@@ -13,6 +13,7 @@ class NavBar extends Component {
       zipCode: null,
     };
   }
+
   setBusinessDetails = e => {
     e.preventDefault();
     //pass data back to parent
@@ -41,11 +42,17 @@ class NavBar extends Component {
             type="text"
             onChange={this.handleSearchChange}
             className="navbar-searchbox"
+            placeholder="burgers, sushi, food"
           />
           <input
             type="text"
             onChange={this.handleZipChange}
             className="navbar-zipbox"
+            placeholder={
+              this.props.searchLocation
+                ? this.props.searchLocation
+                : 'Current Location'
+            }
           />
           <button type="submit" value="Search" className="navbar-search-button">
             <FontAwesomeIcon icon={faSearch} />

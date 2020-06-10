@@ -17,6 +17,7 @@ class App extends Component {
       openNow: true,
       coordinates: null,
       zipCode: null,
+      formatted_address: null,
     };
   }
 
@@ -47,6 +48,7 @@ class App extends Component {
       this.setState({
         latitude: addressDetails[0].geometry.location.lat,
         longitude: addressDetails[0].geometry.location.lng,
+        formatted_address: addressDetails[0].formatted_address,
       }),
     );
   };
@@ -85,6 +87,7 @@ class App extends Component {
             changeSearch={this.changeSearch.bind(this)}
             searchRadius={this.state.searchRadius}
             openNow={this.state.openNow}
+            searchLocation={this.state.formatted_address}
           />
           <Switch>
             <Route path="/" exact>
