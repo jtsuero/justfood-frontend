@@ -5,6 +5,7 @@ import NavBar from './NavBar.js';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import BusinessPage from './BusinessPage';
 import LoadingPage from './LoadingPage';
+import Api from './api.js';
 
 class App extends Component {
   constructor() {
@@ -15,6 +16,8 @@ class App extends Component {
       searchRadius: 2,
       openNow: true,
       coordinates: null,
+      zipCode: null,
+      formatted_address: null,
     };
   }
 
@@ -28,11 +31,11 @@ class App extends Component {
         position => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          this.getCoordinates(latitude, longitude);
           this.setState({longitude, latitude});
         },
         err => {
-          console.log('error getting location', err);
+          let zipCode = prompt('Please provide your Zip Code or City, State');
+          this.getCoordinates(zipCode);
         },
       );
     } else {
@@ -40,13 +43,21 @@ class App extends Component {
     }
   };
 
-  changeSearch = (searchKeyword, searchRadius, openNow) => {
-    this.setState({searchKeyword, searchRadius, openNow});
+  getCoordinates = address => {
+    Api.getCoordinates(address).then(addressDetails =>
+      this.setState({
+        latitude: addressDetails[0].geometry.location.lat,
+        longitude: addressDetails[0].geometry.location.lng,
+        formatted_address: addressDetails[0].formatted_address,
+      }),
+    );
   };
 
-  getCoordinates = (latitude, longitude) => {
-    this.setState({
-      coordinates: {latitude, longitude},
+  changeSearch = (searchKeyword, searchRadius, openNow, address) => {
+    this.setState({searchKeyword, searchRadius, openNow}, () => {
+      if (address) {
+        this.getCoordinates(address);
+      }
     });
   };
 
@@ -61,7 +72,6 @@ class App extends Component {
       foodPage = (
         <FoodPage
           clickPhoto={this.onPhotoClick.bind(this)}
-          getCoordinates={this.getCoordinates.bind(this)}
           searchKeyword={this.state.searchKeyword}
           searchRadius={this.state.searchRadius}
           openNow={this.state.openNow}
@@ -77,6 +87,7 @@ class App extends Component {
             changeSearch={this.changeSearch.bind(this)}
             searchRadius={this.state.searchRadius}
             openNow={this.state.openNow}
+            searchLocation={this.state.formatted_address}
           />
           <Switch>
             <Route path="/" exact>

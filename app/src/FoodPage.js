@@ -74,9 +74,22 @@ class FoodPage extends Component {
     return photoCollection;
   };
 
+  noResults = () => {
+    return (
+      <div className="food-page-no-results">
+        Sorry, we couldn't find any results matching your request in the current
+        area!
+      </div>
+    );
+  };
+
   render() {
     if (this.state.businessList === null) {
       return <LoadingPage />;
+    } else if (this.state.businessList.length === 0) {
+      return (
+        <div className="food-page-no-results-container">{this.noResults()}</div>
+      );
     }
     return <div className="food-page-images-container">{this.getPhotos()}</div>;
   }
