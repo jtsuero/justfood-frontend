@@ -10,6 +10,7 @@ class NavBar extends Component {
     super();
     this.state = {
       searchInput: null,
+      zipCode: null,
     };
   }
   setBusinessDetails = e => {
@@ -19,12 +20,45 @@ class NavBar extends Component {
       this.state.searchInput,
       this.props.searchRadius,
       this.props.openNow,
+      this.state.zipCode,
     );
     this.props.history.push('/');
   };
 
   handleSearchChange = e => {
     this.setState({searchInput: e.target.value});
+  };
+
+  handleZipChange = e => {
+    this.setState({zipCode: e.target.value});
+  };
+
+  searchForm = () => {
+    return (
+      <div className="navbar-search">
+        <form onSubmit={this.setBusinessDetails} className="navbar-form">
+          <input
+            type="text"
+            onChange={this.handleSearchChange}
+            className="navbar-searchbox"
+          />
+          <input
+            type="text"
+            onChange={this.handleZipChange}
+            className="navbar-zipbox"
+          />
+          <button type="submit" value="Search" className="navbar-search-button">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </form>
+        <SearchFilters
+          handleOpenNowChange={this.handleOpenNowChange.bind(this)}
+          handleDistanceClick={this.handleDistanceClick.bind(this)}
+          openNow={this.props.openNow}
+          searchRadius={this.props.searchRadius}
+        />
+      </div>
+    );
   };
 
   handleOpenNowChange = openStatus => {
@@ -45,28 +79,7 @@ class NavBar extends Component {
         <Link to="/" className="navbar-logo-container">
           <img className="navbar-logo" src={logo} alt=""></img>
         </Link>
-        <div className="navbar-search">
-          <form onSubmit={this.setBusinessDetails} className="navbar-form">
-            <input
-              type="text"
-              onChange={this.handleSearchChange}
-              className="navbar-searchbox"
-            />
-            <button
-              type="submit"
-              value="Search"
-              className="navbar-search-button"
-            >
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </form>
-          <SearchFilters
-            handleOpenNowChange={this.handleOpenNowChange.bind(this)}
-            handleDistanceClick={this.handleDistanceClick.bind(this)}
-            openNow={this.props.openNow}
-            searchRadius={this.props.searchRadius}
-          />
-        </div>
+        {this.searchForm()}
       </div>
     );
   }

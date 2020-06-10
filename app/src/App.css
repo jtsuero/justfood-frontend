@@ -256,7 +256,14 @@
 
 .navbar-searchbox {
   width: 100%;
-  border-radius: 15px;
+  border: 1px #03989e solid;
+  height: 2rem;
+  padding: 10px;
+  padding-right: 40px;
+}
+
+.navbar-zipbox {
+  width: 100%;
   border: 1px #03989e solid;
   height: 2rem;
   padding: 10px;

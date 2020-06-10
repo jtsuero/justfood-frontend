@@ -35,7 +35,6 @@ class App extends Component {
         err => {
           let zipCode = prompt('Please provide your Zip Code or City, State');
           this.getCoordinates(zipCode);
-          console.log('error getting location', err);
         },
       );
     } else {
@@ -52,8 +51,12 @@ class App extends Component {
     );
   };
 
-  changeSearch = (searchKeyword, searchRadius, openNow) => {
-    this.setState({searchKeyword, searchRadius, openNow});
+  changeSearch = (searchKeyword, searchRadius, openNow, address) => {
+    this.setState({searchKeyword, searchRadius, openNow}, () => {
+      if (address) {
+        this.getCoordinates(address);
+      }
+    });
   };
 
   //enables business data to be passed BottomBar component
