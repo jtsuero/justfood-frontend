@@ -5,6 +5,7 @@ import NavBar from './NavBar.js';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import BusinessPage from './BusinessPage';
 import LoadingPage from './LoadingPage';
+import Api from './api.js';
 
 class App extends Component {
   constructor() {
@@ -15,6 +16,7 @@ class App extends Component {
       searchRadius: 2,
       openNow: true,
       coordinates: null,
+      zipCode: null,
     };
   }
 
@@ -28,10 +30,11 @@ class App extends Component {
         position => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          this.getCoordinates(latitude, longitude);
           this.setState({longitude, latitude});
         },
         err => {
+          let zipCode = prompt('Please provide your Zip Code or City, State');
+          this.getCoordinates(zipCode);
           console.log('error getting location', err);
         },
       );
@@ -40,14 +43,17 @@ class App extends Component {
     }
   };
 
-  changeSearch = (searchKeyword, searchRadius, openNow) => {
-    this.setState({searchKeyword, searchRadius, openNow});
+  getCoordinates = address => {
+    Api.getCoordinates(address).then(addressDetails =>
+      this.setState({
+        latitude: addressDetails[0].geometry.location.lat,
+        longitude: addressDetails[0].geometry.location.lng,
+      }),
+    );
   };
 
-  getCoordinates = (latitude, longitude) => {
-    this.setState({
-      coordinates: {latitude, longitude},
-    });
+  changeSearch = (searchKeyword, searchRadius, openNow) => {
+    this.setState({searchKeyword, searchRadius, openNow});
   };
 
   //enables business data to be passed BottomBar component
@@ -61,7 +67,6 @@ class App extends Component {
       foodPage = (
         <FoodPage
           clickPhoto={this.onPhotoClick.bind(this)}
-          getCoordinates={this.getCoordinates.bind(this)}
           searchKeyword={this.state.searchKeyword}
           searchRadius={this.state.searchRadius}
           openNow={this.state.openNow}
