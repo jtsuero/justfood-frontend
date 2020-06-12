@@ -311,6 +311,10 @@
   box-shadow: 0 0 5px;
 }
 
+.mobile-searchbox-button-container {
+  padding: 30px;
+}
+
 .mobile-search-open-now {
   padding: 5px;
   margin: 1px;
@@ -326,8 +330,7 @@
 }
 
 .mobile-searchbox-container {
-  width: 100%;
-  padding: 5px 0;
+  display: none;
 }
 
 .mobile-searchbox {
@@ -523,12 +526,20 @@
     max-width: 50%;
   }
 
+  .mobile-searchbox-container {
+    display: initial;
+  }
+
   .modal-food-image {
     width: auto;
     height: auto;
     max-height: 70%;
     max-width: 90%;
     user-select: none;
+  }
+
+  .navbar-search {
+    display: none;
   }
 }
 
@@ -537,8 +548,17 @@
   .business-page {
     padding: 0 10%;
   }
+
   .navbar-logo {
     max-width: 100%;
+  }
+
+  .navbar-search {
+    display: none;
+  }
+
+  .mobile-searchbox-container {
+    display: initial;
   }
 
   .modal-food-image {
