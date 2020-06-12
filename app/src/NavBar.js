@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {Link, withRouter} from 'react-router-dom';
 import SearchFilters from './SearchFilters.js';
+import MobileSearchBox from './MobileSearchBox.js';
 
 class NavBar extends Component {
   constructor() {
@@ -87,6 +88,12 @@ class NavBar extends Component {
           <img className="navbar-logo" src={logo} alt=""></img>
         </Link>
         {this.searchForm()}
+        <MobileSearchBox
+          handleOpenNowChange={this.handleOpenNowChange.bind(this)}
+          handleDistanceClick={this.handleDistanceClick.bind(this)}
+          openNow={this.props.openNow}
+          searchRadius={this.props.searchRadius}
+        />
       </div>
     );
   }
