@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from './just-food-logo.png';
+import just_food_logo from './just_food_burger.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {Link, withRouter} from 'react-router-dom';
@@ -84,8 +84,11 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo-container">
-          <img className="navbar-logo" src={logo} alt=""></img>
+        <div className="navbar-logo-container">
+          <img className="navbar-logo" src={just_food_logo} alt="" />
+        </div>
+        <Link to="/" className="navbar-app-name">
+          <div>just food</div>
         </Link>
         {this.searchForm()}
         <MobileSearchBox
