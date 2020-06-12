@@ -10,11 +10,19 @@ function SearchDistanceButton({miles, onClick, active, source}) {
   if (active) {
     cls += ' active';
   }
-  return (
-    <div className={cls} onClick={onClick}>
-      {miles} miles
-    </div>
-  );
+  if (miles === 1) {
+    return (
+      <div className={cls} onClick={onClick}>
+        {miles} mile
+      </div>
+    );
+  } else {
+    return (
+      <div className={cls} onClick={onClick}>
+        {miles} miles
+      </div>
+    );
+  }
 }
 
 export default SearchDistanceButton;
