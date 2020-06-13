@@ -125,7 +125,6 @@ class MobileSearchBox extends Component {
   setBusinessDetails = e => {
     e.preventDefault();
     this.toggleSearchBox();
-    console.log(this.state);
     //pass data back to parent
     this.props.changeSearch(
       this.state.searchInput,
