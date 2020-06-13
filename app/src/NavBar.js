@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import logo from './just-food-logo.png';
+import just_food_logo from './just_food_burger.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {Link, withRouter} from 'react-router-dom';
 import SearchFilters from './SearchFilters.js';
+import MobileSearchBox from './MobileSearchBox.js';
 
 class NavBar extends Component {
   constructor() {
@@ -14,16 +15,16 @@ class NavBar extends Component {
     };
   }
 
-  setBusinessDetails = e => {
-    e.preventDefault();
-    //pass data back to parent
+  handleOpenNowChange = openStatus => {
     this.props.changeSearch(
       this.state.searchInput,
       this.props.searchRadius,
-      this.props.openNow,
-      this.state.zipCode,
+      openStatus,
     );
-    this.props.history.push('/');
+  };
+
+  handleDistanceClick = miles => {
+    this.props.changeSearch(this.state.searchInput, miles, this.props.openNow);
   };
 
   handleSearchChange = e => {
@@ -68,25 +69,36 @@ class NavBar extends Component {
     );
   };
 
-  handleOpenNowChange = openStatus => {
+  setBusinessDetails = e => {
+    e.preventDefault();
+    //pass data back to parent
     this.props.changeSearch(
       this.state.searchInput,
       this.props.searchRadius,
-      openStatus,
+      this.props.openNow,
+      this.state.zipCode,
     );
-  };
-
-  handleDistanceClick = miles => {
-    this.props.changeSearch(this.state.searchInput, miles, this.props.openNow);
+    this.props.history.push('/');
   };
 
   render() {
     return (
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo-container">
-          <img className="navbar-logo" src={logo} alt=""></img>
+        <div className="navbar-logo-container">
+          <img className="navbar-logo" src={just_food_logo} alt="" />
+        </div>
+        <Link to="/" className="navbar-app-name">
+          <div>just food</div>
         </Link>
         {this.searchForm()}
+        <MobileSearchBox
+          handleOpenNowChange={this.handleOpenNowChange.bind(this)}
+          handleDistanceClick={this.handleDistanceClick.bind(this)}
+          openNow={this.props.openNow}
+          searchRadius={this.props.searchRadius}
+          changeSearch={this.props.changeSearch}
+          searchLocation={this.props.searchLocation}
+        />
       </div>
     );
   }
