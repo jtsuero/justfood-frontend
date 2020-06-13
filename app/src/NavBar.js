@@ -15,16 +15,16 @@ class NavBar extends Component {
     };
   }
 
-  setBusinessDetails = e => {
-    e.preventDefault();
-    //pass data back to parent
+  handleOpenNowChange = openStatus => {
     this.props.changeSearch(
       this.state.searchInput,
       this.props.searchRadius,
-      this.props.openNow,
-      this.state.zipCode,
+      openStatus,
     );
-    this.props.history.push('/');
+  };
+
+  handleDistanceClick = miles => {
+    this.props.changeSearch(this.state.searchInput, miles, this.props.openNow);
   };
 
   handleSearchChange = e => {
@@ -69,16 +69,16 @@ class NavBar extends Component {
     );
   };
 
-  handleOpenNowChange = openStatus => {
+  setBusinessDetails = e => {
+    e.preventDefault();
+    //pass data back to parent
     this.props.changeSearch(
       this.state.searchInput,
       this.props.searchRadius,
-      openStatus,
+      this.props.openNow,
+      this.state.zipCode,
     );
-  };
-
-  handleDistanceClick = miles => {
-    this.props.changeSearch(this.state.searchInput, miles, this.props.openNow);
+    this.props.history.push('/');
   };
 
   render() {
@@ -96,6 +96,7 @@ class NavBar extends Component {
           handleDistanceClick={this.handleDistanceClick.bind(this)}
           openNow={this.props.openNow}
           searchRadius={this.props.searchRadius}
+          changeSearch={this.props.changeSearch}
         />
       </div>
     );

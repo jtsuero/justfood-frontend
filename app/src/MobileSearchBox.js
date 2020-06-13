@@ -9,6 +9,8 @@ class MobileSearchBox extends Component {
     super();
     this.state = {
       searchBoxOpen: false,
+      searchInput: null,
+      zipCode: null,
     };
   }
 
@@ -34,6 +36,14 @@ class MobileSearchBox extends Component {
     );
   };
 
+  handleSearchChange = e => {
+    this.setState({searchInput: e.target.value});
+  };
+
+  handleZipChange = e => {
+    this.setState({zipCode: e.target.value});
+  };
+
   openNowButton = () => {
     //button will indicate also showing restaurants that are closed
     let cls = 'mobile-search-open-now';
@@ -44,7 +54,10 @@ class MobileSearchBox extends Component {
       <div
         className={cls}
         onClick={() => {
-          this.props.handleOpenNowChange(!this.props.openNow);
+          this.props.handleOpenNowChange(
+            !this.props.openNow,
+            this.state.searchInput,
+          );
         }}
       >
         Open Now
@@ -87,7 +100,15 @@ class MobileSearchBox extends Component {
             {this.distanceButtons()}
           </div>
           <div className="mobile-submit-buttons">
-            <button className="mobile-cancel-button">Cancel</button>
+            <button
+              className="mobile-cancel-button"
+              onClick={e => {
+                e.preventDefault();
+                this.toggleSearchBox();
+              }}
+            >
+              Cancel
+            </button>
             <button
               type="submit"
               value="Search"
@@ -98,6 +119,19 @@ class MobileSearchBox extends Component {
           </div>
         </form>
       </div>
+    );
+  };
+
+  setBusinessDetails = e => {
+    e.preventDefault();
+    this.toggleSearchBox();
+    console.log(this.state);
+    //pass data back to parent
+    this.props.changeSearch(
+      this.state.searchInput,
+      this.props.searchRadius,
+      this.props.openNow,
+      this.state.zipCode,
     );
   };
 
