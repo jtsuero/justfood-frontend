@@ -81,9 +81,7 @@ export default class BusinessPage extends Component {
       this.state.businessInfo.formatted_phone_number
     ) {
       let phoneNumber = this.state.businessInfo.formatted_phone_number + ' ';
-      clickablePhoneNumber = (
-        <a href={`tel:${this.state.int_phone}`}>{phoneNumber}</a>
-      );
+      clickablePhoneNumber = <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>;
     }
     if (this.state.businessInfo && this.state.businessInfo.opening_hours) {
       openingHours = this.state.businessInfo.opening_hours.weekday_text[

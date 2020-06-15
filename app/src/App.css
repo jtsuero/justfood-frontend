@@ -53,6 +53,7 @@
   min-width: 100%;
   vertical-align: bottom;
   height: 100%;
+  cursor: pointer;
 }
 
 .business-page-google-url {
@@ -420,6 +421,7 @@
   border-radius: 20px;
   position: relative;
   left: -35px;
+  cursor: pointer;
 }
 
 .navbar-searchbox {
