@@ -4,7 +4,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons';
 import {faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
-const photoKey = `AIzaSyC3qAdwyGSoamVwR7DIS5VdmhVZlg1NBic`;
 
 export default class Modal extends Component {
   constructor() {

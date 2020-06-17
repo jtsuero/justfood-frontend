@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Modal from './Modal.js';
 import Api from './api.js';
 import LoadingPage from './LoadingPage.js';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPhone} from '@fortawesome/free-solid-svg-icons';
+import {faDirections} from '@fortawesome/free-solid-svg-icons';
 
 export default class BusinessPage extends Component {
   constructor(props) {
@@ -82,7 +85,17 @@ export default class BusinessPage extends Component {
     ) {
       let phoneNumber = this.state.businessInfo.formatted_phone_number + ' ';
       clickablePhoneNumber = (
-        <a href={`tel:${this.state.int_phone}`}>{phoneNumber}</a>
+        <a
+          href={`tel:${phoneNumber}`}
+          className="business-page-phone-container"
+        >
+          <div>
+            <div className="business-page-phone-icon">
+              <FontAwesomeIcon icon={faPhone} />
+            </div>
+            {phoneNumber}
+          </div>
+        </a>
       );
     }
     if (this.state.businessInfo && this.state.businessInfo.opening_hours) {
@@ -108,18 +121,21 @@ export default class BusinessPage extends Component {
               {this.state.businessInfo.name}
             </div>
             <div className="business-specifics">
-              Hours:
+              <div>{' ' + this.state.businessInfo.formatted_address}</div>
               {' ' + openingHours + ' '}
-              <div>
-                Phone:
+              <div className="business-page-direction-phone-buttons">
+                <a
+                  href={this.generateDirectionsUrl()}
+                  className="business-page-google-url"
+                >
+                  <div>
+                    <div className="business-page-directions-icon">
+                      <FontAwesomeIcon icon={faDirections} />
+                    </div>
+                    Directions
+                  </div>
+                </a>
                 {clickablePhoneNumber}
-              </div>
-              <div>
-                Address:
-                {' ' + this.state.businessInfo.formatted_address}
-                <div className="business-page-google-url">
-                  <a href={this.generateDirectionsUrl()}>Get Directions</a>
-                </div>
               </div>
             </div>
           </div>
