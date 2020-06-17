@@ -356,6 +356,9 @@
 
 .mobile-searchbox-button-container {
   padding: 30px;
+  position: absolute;
+  right: 0;
+  top: 2vh;
 }
 
 .mobile-search-open-now {
@@ -429,14 +432,20 @@
 
 .navbar-form {
   display: flex;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 
 .navbar-logo-container {
   display: flex;
   align-items: center;
   max-width: 50%;
-  height: 10vh;
+}
+
+.navbar-link {
+  max-width: 50%;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
 }
 
 .navbar-logo {
@@ -449,9 +458,7 @@
   font-family: 'Lalezar', cursive;
   color: white;
   font-size: 2em;
-  width: 40%;
-  max-width: 50%;
-  text-decoration: none;
+  width: 100%;
 }
 
 .navbar-search-button {
@@ -492,6 +499,7 @@
   top: 23%;
   flex: 1;
   max-width: 400px;
+  margin: 0 40px;
   width: 50%;
 }
 
@@ -620,6 +628,10 @@
 
   .mobile-searchbox-container {
     display: initial;
+  }
+
+  .mobile-searchbox-button-container {
+    top: 0;
   }
 
   .modal-food-image {
