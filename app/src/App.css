@@ -57,24 +57,65 @@
 }
 
 .business-page-google-url {
-  margin-top: 0.5em;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.business-page-phone {
+  padding: 10px;
+  text-align: center;
+  width: 50%;
+}
+
+.business-page-phone-container {
+  padding: 10px;
+  text-align: center;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.business-page-phone-icon {
+  padding: 5px;
+  color: #03989e;
+}
+
+.business-page-directions-icon {
+  padding: 5px;
+  color: #03989e;
 }
 
 .restaurant-name {
   font-size: 2em;
-  color: #03989e;
+  color: black;
   margin-bottom: 0.5em;
 }
 
 .business-specifics {
   font-size: 1em;
-  color: #03989e;
+  color: black;
   font-size: 0.8em;
 }
 
 .business-page-business-info {
   font-family: sans-serif;
   padding: 1em;
+}
+
+.business-page-phone {
+  color: black;
+  text-decoration: none;
+}
+
+.business-page-direction-phone-buttons {
+  display: flex;
+}
+
+.business-page-phone {
 }
 
 .filler {
