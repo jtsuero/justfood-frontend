@@ -84,11 +84,15 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <div className="navbar-logo-container">
-          <img className="navbar-logo" src={just_food_logo} alt="" />
-        </div>
-        <Link to="/" className="navbar-app-name">
-          <div>just food</div>
+        <Link
+          to="/"
+          onClick={() => window.location.reload()}
+          className="navbar-app-name"
+        >
+          <div className="navbar-logo-container">
+            <img className="navbar-logo" src={just_food_logo} alt="" />
+            <div>just food</div>
+          </div>
         </Link>
         {this.searchForm()}
         <MobileSearchBox
