@@ -30,6 +30,23 @@ class App extends Component {
     this.getLocation();
   }
 
+  changeSearchKeyword = input => {
+    this.setState({searchInput: input});
+  };
+
+  changeCurrentLocation = input => {
+    this.setState({currentLocation: input});
+  };
+
+  resetDefaultSearch = () => {
+    this.setState({
+      searchKeyword: this.DEFAULT_VALUES.searchKeyword,
+      searchInput: this.DEFAULT_VALUES.searchInput,
+      searchRadius: this.DEFAULT_VALUES.searchRadius,
+      openNow: this.DEFAULT_VALUES.openNow,
+    });
+  };
+
   getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -39,8 +56,10 @@ class App extends Component {
           this.setState({longitude, latitude});
         },
         err => {
-          let zipCode = prompt('Please provide your Zip Code or City, State');
-          this.getCoordinates(zipCode);
+          let currentLocation = prompt(
+            'Please provide your Zip Code or City, State',
+          );
+          this.getCoordinates(currentLocation);
         },
       );
     } else {
@@ -53,17 +72,20 @@ class App extends Component {
       this.setState({
         latitude: addressDetails[0].geometry.location.lat,
         longitude: addressDetails[0].geometry.location.lng,
-        formatted_address: addressDetails[0].formatted_address,
+        searchLocation: addressDetails[0].formatted_address,
       }),
     );
   };
 
-  changeSearch = (searchKeyword, searchRadius, openNow, address) => {
-    this.setState({searchKeyword, searchRadius, openNow}, () => {
-      if (address) {
-        this.getCoordinates(address);
-      }
-    });
+  submitSearch = (searchKeyword, searchRadius, openNow, address) => {
+    this.setState(
+      {searchKeyword: this.state.searchInput, searchRadius, openNow},
+      () => {
+        if (address) {
+          this.getCoordinates(address);
+        }
+      },
+    );
   };
 
   //enables business data to be passed BottomBar component
@@ -89,10 +111,16 @@ class App extends Component {
       <Router>
         <div className="main-container">
           <NavBar
-            changeSearch={this.changeSearch.bind(this)}
+            submitSearch={this.submitSearch.bind(this)}
+            changeSearchKeyword={this.changeSearchKeyword}
+            changeCurrentLocation={this.changeCurrentLocation}
             searchRadius={this.state.searchRadius}
+            searchKeyword={this.state.searchKeyword}
+            searchInput={this.state.searchInput}
+            currentLocation={this.state.currentLocation}
             openNow={this.state.openNow}
-            searchLocation={this.state.formatted_address}
+            searchLocation={this.state.searchLocation}
+            resetDefaultSearch={this.resetDefaultSearch}
           />
           <Switch>
             <Route path="/" exact>

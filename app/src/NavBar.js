@@ -7,32 +7,32 @@ import SearchFilters from './SearchFilters.js';
 import MobileSearchBox from './MobileSearchBox.js';
 
 class NavBar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchInput: null,
-      zipCode: null,
-    };
-  }
-
   handleOpenNowChange = openStatus => {
-    this.props.changeSearch(
-      this.state.searchInput,
+    this.props.submitSearch(
+      this.props.searchKeyword,
       this.props.searchRadius,
       openStatus,
     );
   };
 
   handleDistanceClick = miles => {
-    this.props.changeSearch(this.state.searchInput, miles, this.props.openNow);
+    this.props.submitSearch(
+      this.props.searchKeyword,
+      miles,
+      this.props.openNow,
+    );
   };
 
   handleSearchChange = e => {
-    this.setState({searchInput: e.target.value});
+    this.props.changeSearchKeyword(e.target.value);
   };
 
-  handleZipChange = e => {
-    this.setState({zipCode: e.target.value});
+  handleLogoClick = () => {
+    this.props.resetDefaultSearch();
+  };
+
+  handleLocationChange = e => {
+    this.props.changeCurrentLocation(e.target.value);
   };
 
   searchForm = () => {
@@ -44,10 +44,11 @@ class NavBar extends Component {
             onChange={this.handleSearchChange}
             className="navbar-searchbox"
             placeholder="burgers, sushi, food"
+            value={this.props.searchInput}
           />
           <input
             type="text"
-            onChange={this.handleZipChange}
+            onChange={this.handleLocationChange}
             className="navbar-zipbox"
             placeholder={
               this.props.searchLocation
@@ -72,11 +73,11 @@ class NavBar extends Component {
   setBusinessDetails = e => {
     e.preventDefault();
     //pass data back to parent
-    this.props.changeSearch(
-      this.state.searchInput,
+    this.props.submitSearch(
+      this.props.searchInput,
       this.props.searchRadius,
       this.props.openNow,
-      this.state.zipCode,
+      this.props.currentLocation,
     );
     this.props.history.push('/');
   };
@@ -84,11 +85,7 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navbar-container">
-        <Link
-          to="/"
-          onClick={() => window.location.reload()}
-          className="navbar-link"
-        >
+        <Link to="/" onClick={this.handleLogoClick} className="navbar-link">
           <div className="navbar-logo-container">
             <img className="navbar-logo" src={just_food_logo} alt="" />
           </div>
@@ -100,7 +97,7 @@ class NavBar extends Component {
           handleDistanceClick={this.handleDistanceClick.bind(this)}
           openNow={this.props.openNow}
           searchRadius={this.props.searchRadius}
-          changeSearch={this.props.changeSearch}
+          submitSearch={this.props.submitSearch}
           searchLocation={this.props.searchLocation}
         />
       </div>
