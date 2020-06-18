@@ -11,15 +11,20 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentBusiness: null,
-      searchKeyword: 'restaurants',
-      searchRadius: 2,
-      openNow: true,
-      coordinates: null,
-      zipCode: null,
-      formatted_address: null,
+      ...this.DEFAULT_VALUES,
     };
   }
+
+  DEFAULT_VALUES = {
+    currentBusiness: null,
+    searchKeyword: 'restaurants',
+    searchInput: '',
+    searchRadius: 2,
+    openNow: true,
+    coordinates: null,
+    currentLocation: null,
+    searchLocation: null,
+  };
 
   componentDidMount() {
     this.getLocation();
