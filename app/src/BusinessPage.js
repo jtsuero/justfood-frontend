@@ -127,6 +127,8 @@ export default class BusinessPage extends Component {
                 <a
                   href={this.generateDirectionsUrl()}
                   className="business-page-google-url"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <div>
                     <div className="business-page-directions-icon">
