@@ -67,7 +67,12 @@ class App extends Component {
         position => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          this.setState({longitude, latitude});
+          this.setState({
+            longitude,
+            latitude,
+            originalLatitude: latitude,
+            originalLongitude: longitude,
+          });
         },
         err => {
           let currentLocation = prompt(
@@ -82,13 +87,25 @@ class App extends Component {
   };
 
   getCoordinates = address => {
-    Api.getCoordinates(address).then(addressDetails =>
-      this.setState({
-        latitude: addressDetails[0].geometry.location.lat,
-        longitude: addressDetails[0].geometry.location.lng,
-        searchLocation: addressDetails[0].formatted_address,
-      }),
-    );
+    if (this.state.originalLatitude && this.state.originalLongitude) {
+      Api.getCoordinates(address).then(addressDetails =>
+        this.setState({
+          latitude: addressDetails[0].geometry.location.lat,
+          longitude: addressDetails[0].geometry.location.lng,
+          searchLocation: addressDetails[0].formatted_address,
+        }),
+      );
+    } else {
+      Api.getCoordinates(address).then(addressDetails =>
+        this.setState({
+          latitude: addressDetails[0].geometry.location.lat,
+          longitude: addressDetails[0].geometry.location.lng,
+          originalLatitude: addressDetails[0].geometry.location.lat,
+          originalLongitude: addressDetails[0].geometry.location.lng,
+          searchLocation: addressDetails[0].formatted_address,
+        }),
+      );
+    }
   };
 
   submitSearch = (searchKeyword, searchRadius, openNow, address) => {
