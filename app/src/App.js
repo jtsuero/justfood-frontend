@@ -12,6 +12,8 @@ class App extends Component {
     super();
     this.state = {
       ...this.DEFAULT_VALUES,
+      originalLatitude: null,
+      originalLongitude: null,
     };
   }
 
@@ -24,6 +26,7 @@ class App extends Component {
     coordinates: null,
     currentLocation: null,
     searchLocation: null,
+    distanceDropdownOpen: false,
   };
 
   componentDidMount() {
@@ -38,12 +41,23 @@ class App extends Component {
     this.setState({currentLocation: input});
   };
 
+  closeDropdown = () => {
+    setTimeout(() => {
+      this.setState({distanceDropdownOpen: false});
+    }, 100);
+  };
+
   resetDefaultSearch = () => {
     this.setState({
       searchKeyword: this.DEFAULT_VALUES.searchKeyword,
       searchInput: this.DEFAULT_VALUES.searchInput,
       searchRadius: this.DEFAULT_VALUES.searchRadius,
       openNow: this.DEFAULT_VALUES.openNow,
+      distanceDropdownOpen: this.DEFAULT_VALUES.distanceDropdownOpen,
+      currentLocation: this.DEFAULT_VALUES.currentLocation,
+      searchLocation: this.DEFAULT_VALUES.searchLocation,
+      longitude: this.state.originalLongitude,
+      latitude: this.state.originalLatitude,
     });
   };
 
@@ -88,6 +102,10 @@ class App extends Component {
     );
   };
 
+  toggleDistanceDropdown = () => {
+    this.setState({distanceDropdownOpen: !this.state.distanceDropdownOpen});
+  };
+
   //enables business data to be passed BottomBar component
   onPhotoClick = newBusiness => {
     this.setState({currentBusiness: newBusiness});
@@ -121,6 +139,9 @@ class App extends Component {
             openNow={this.state.openNow}
             searchLocation={this.state.searchLocation}
             resetDefaultSearch={this.resetDefaultSearch}
+            distanceDropdownOpen={this.state.distanceDropdownOpen}
+            closeDropdown={this.closeDropdown}
+            toggleDropdown={this.toggleDistanceDropdown}
           />
           <Switch>
             <Route path="/" exact>
