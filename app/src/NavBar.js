@@ -55,6 +55,7 @@ class NavBar extends Component {
                 ? this.props.searchLocation
                 : 'Current Location'
             }
+            value={this.props.currentLocation ? this.props.currentLocation : ''}
           />
           <button type="submit" value="Search" className="navbar-search-button">
             <FontAwesomeIcon icon={faSearch} />
@@ -65,6 +66,9 @@ class NavBar extends Component {
           handleDistanceClick={this.handleDistanceClick.bind(this)}
           openNow={this.props.openNow}
           searchRadius={this.props.searchRadius}
+          distanceDropdownOpen={this.props.distanceDropdownOpen}
+          closeDropdown={this.props.closeDropdown}
+          toggleDropdown={this.props.toggleDropdown}
         />
       </div>
     );
@@ -72,6 +76,7 @@ class NavBar extends Component {
 
   setBusinessDetails = e => {
     e.preventDefault();
+    this.props.closeDropdown();
     //pass data back to parent
     this.props.submitSearch(
       this.props.searchInput,

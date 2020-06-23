@@ -2,13 +2,6 @@ import React, {Component} from 'react';
 import SearchDistanceButton from './SearchDistanceButton';
 
 class SearchFilters extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      distanceOpen: false,
-    };
-  }
-
   dropDownMenu = () => {
     let distances = [1, 2, 5, 10];
     const distanceButtons = distances.map(miles => {
@@ -17,7 +10,7 @@ class SearchFilters extends Component {
           miles={miles}
           onClick={() => {
             this.props.handleDistanceClick(miles);
-            this.closeDropdown();
+            this.props.closeDropdown();
           }}
           active={this.props.searchRadius === miles}
           key={miles}
@@ -29,12 +22,6 @@ class SearchFilters extends Component {
         <div className="search-dropdown-distance">{distanceButtons}</div>
       </div>
     );
-  };
-
-  closeDropdown = () => {
-    setTimeout(() => {
-      this.setState({distanceOpen: false});
-    }, 100);
   };
 
   openNowButton = () => {
@@ -61,13 +48,11 @@ class SearchFilters extends Component {
         {this.openNowButton()}
         <div
           className="search-dropdown-button"
-          onClick={() =>
-            this.setState({distanceOpen: !this.state.distanceOpen})
-          }
+          onClick={() => this.props.toggleDropdown()}
         >
-          {this.state.distanceOpen ? 'Close' : 'Distance'}
+          {this.props.distanceDropdownOpen ? 'Close' : 'Distance'}
         </div>
-        {this.state.distanceOpen && this.dropDownMenu()}
+        {this.props.distanceDropdownOpen && this.dropDownMenu()}
       </div>
     );
   }

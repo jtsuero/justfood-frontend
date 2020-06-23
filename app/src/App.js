@@ -12,6 +12,8 @@ class App extends Component {
     super();
     this.state = {
       ...this.DEFAULT_VALUES,
+      originalLatitude: null,
+      originalLongitude: null,
     };
   }
 
@@ -24,6 +26,7 @@ class App extends Component {
     coordinates: null,
     currentLocation: null,
     searchLocation: null,
+    distanceDropdownOpen: false,
   };
 
   componentDidMount() {
@@ -38,12 +41,23 @@ class App extends Component {
     this.setState({currentLocation: input});
   };
 
+  closeDropdown = () => {
+    setTimeout(() => {
+      this.setState({distanceDropdownOpen: false});
+    }, 100);
+  };
+
   resetDefaultSearch = () => {
     this.setState({
       searchKeyword: this.DEFAULT_VALUES.searchKeyword,
       searchInput: this.DEFAULT_VALUES.searchInput,
       searchRadius: this.DEFAULT_VALUES.searchRadius,
       openNow: this.DEFAULT_VALUES.openNow,
+      distanceDropdownOpen: this.DEFAULT_VALUES.distanceDropdownOpen,
+      currentLocation: this.DEFAULT_VALUES.currentLocation,
+      searchLocation: this.DEFAULT_VALUES.searchLocation,
+      longitude: this.state.originalLongitude,
+      latitude: this.state.originalLatitude,
     });
   };
 
@@ -53,7 +67,12 @@ class App extends Component {
         position => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          this.setState({longitude, latitude});
+          this.setState({
+            longitude,
+            latitude,
+            originalLatitude: latitude,
+            originalLongitude: longitude,
+          });
         },
         err => {
           let currentLocation = prompt(
@@ -68,13 +87,25 @@ class App extends Component {
   };
 
   getCoordinates = address => {
-    Api.getCoordinates(address).then(addressDetails =>
-      this.setState({
-        latitude: addressDetails[0].geometry.location.lat,
-        longitude: addressDetails[0].geometry.location.lng,
-        searchLocation: addressDetails[0].formatted_address,
-      }),
-    );
+    if (this.state.originalLatitude && this.state.originalLongitude) {
+      Api.getCoordinates(address).then(addressDetails =>
+        this.setState({
+          latitude: addressDetails[0].geometry.location.lat,
+          longitude: addressDetails[0].geometry.location.lng,
+          searchLocation: addressDetails[0].formatted_address,
+        }),
+      );
+    } else {
+      Api.getCoordinates(address).then(addressDetails =>
+        this.setState({
+          latitude: addressDetails[0].geometry.location.lat,
+          longitude: addressDetails[0].geometry.location.lng,
+          originalLatitude: addressDetails[0].geometry.location.lat,
+          originalLongitude: addressDetails[0].geometry.location.lng,
+          searchLocation: addressDetails[0].formatted_address,
+        }),
+      );
+    }
   };
 
   submitSearch = (searchKeyword, searchRadius, openNow, address) => {
@@ -86,6 +117,10 @@ class App extends Component {
         }
       },
     );
+  };
+
+  toggleDistanceDropdown = () => {
+    this.setState({distanceDropdownOpen: !this.state.distanceDropdownOpen});
   };
 
   //enables business data to be passed BottomBar component
@@ -121,6 +156,9 @@ class App extends Component {
             openNow={this.state.openNow}
             searchLocation={this.state.searchLocation}
             resetDefaultSearch={this.resetDefaultSearch}
+            distanceDropdownOpen={this.state.distanceDropdownOpen}
+            closeDropdown={this.closeDropdown}
+            toggleDropdown={this.toggleDistanceDropdown}
           />
           <Switch>
             <Route path="/" exact>
