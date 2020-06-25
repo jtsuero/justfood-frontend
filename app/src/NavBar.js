@@ -84,7 +84,6 @@ class NavBar extends Component {
       this.props.openNow,
       this.props.currentLocation,
     );
-    this.props.history.push('/');
   };
 
   render() {
@@ -100,7 +99,11 @@ class NavBar extends Component {
         <MobileSearchBox
           handleOpenNowChange={this.handleOpenNowChange.bind(this)}
           handleDistanceClick={this.handleDistanceClick.bind(this)}
+          changeCurrentLocation={this.props.changeCurrentLocation}
+          changeSearchKeyword={this.props.changeSearchKeyword}
+          currentLocation={this.props.currentLocation}
           openNow={this.props.openNow}
+          searchInput={this.props.searchInput}
           searchRadius={this.props.searchRadius}
           submitSearch={this.props.submitSearch}
           searchLocation={this.props.searchLocation}

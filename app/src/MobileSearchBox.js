@@ -9,8 +9,6 @@ class MobileSearchBox extends Component {
     super();
     this.state = {
       searchBoxOpen: false,
-      searchInput: null,
-      zipCode: null,
     };
   }
 
@@ -37,11 +35,11 @@ class MobileSearchBox extends Component {
   };
 
   handleSearchChange = e => {
-    this.setState({searchInput: e.target.value});
+    this.props.changeSearchKeyword(e.target.value);
   };
 
-  handleZipChange = e => {
-    this.setState({zipCode: e.target.value});
+  handleLocationChange = e => {
+    this.props.changeCurrentLocation(e.target.value);
   };
 
   openNowButton = () => {
@@ -56,7 +54,7 @@ class MobileSearchBox extends Component {
         onClick={() => {
           this.props.handleOpenNowChange(
             !this.props.openNow,
-            this.state.searchInput,
+            this.props.searchInput,
           );
         }}
       >
@@ -81,17 +79,17 @@ class MobileSearchBox extends Component {
               onChange={this.handleSearchChange}
               className="mobile-searchbox"
               placeholder="burgers, sushi, food"
+              value={this.props.searchInput}
             />
           </div>
           <div className="mobile-zipbox-container">
             <input
               type="text"
-              onChange={this.handleZipChange}
+              onChange={this.handleLocationChange}
               className="mobile-zipbox"
-              placeholder={
-                this.props.searchLocation
-                  ? this.props.searchLocation
-                  : 'Current Location'
+              placeholder={'Current Location'}
+              value={
+                this.props.currentLocation ? this.props.currentLocation : ''
               }
             />
           </div>
@@ -126,11 +124,11 @@ class MobileSearchBox extends Component {
     e.preventDefault();
     this.toggleSearchBox();
     //pass data back to parent
-    this.props.changeSearch(
-      this.state.searchInput,
+    this.props.submitSearch(
+      this.props.searchInput,
       this.props.searchRadius,
       this.props.openNow,
-      this.state.zipCode,
+      this.props.currentLocation,
     );
   };
 
