@@ -4,6 +4,7 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import SearchDistanceButton from './SearchDistanceButton';
 import just_food_logo from './just_food_burger.png';
 import OpenNowButton from './OpenNowButton.js';
+import SearchDistanceButtons from './SearchDistanceButtons';
 
 class MobileSearchBox extends Component {
   constructor() {
@@ -12,27 +13,6 @@ class MobileSearchBox extends Component {
       searchBoxOpen: false,
     };
   }
-
-  distanceButtons = () => {
-    let distances = [1, 2, 5, 10];
-    const distanceButtons = distances.map(miles => {
-      return (
-        <SearchDistanceButton
-          miles={miles}
-          onClick={() => {
-            this.props.handleDistanceClick(miles);
-          }}
-          active={this.props.searchRadius === miles}
-          key={miles}
-        />
-      );
-    });
-    return (
-      <div className="search-dropdown">
-        <div className="search-dropdown-distance">{distanceButtons}</div>
-      </div>
-    );
-  };
 
   handleSearchChange = e => {
     this.props.changeSearchKeyword(e.target.value);
@@ -77,7 +57,11 @@ class MobileSearchBox extends Component {
               handleOpenNowChange={this.props.handleOpenNowChange}
               openNow={this.props.openNow}
             />
-            {this.distanceButtons()}
+            <SearchDistanceButtons
+              searchRadius={this.props.searchRadius}
+              handleDistanceClick={this.props.handleDistanceClick}
+              closeDropdown={this.props.closeDropdown}
+            />
           </div>
           <div className="mobile-submit-buttons">
             <button

@@ -102,6 +102,7 @@ class NavBar extends Component {
           changeCurrentLocation={this.props.changeCurrentLocation}
           changeSearchKeyword={this.props.changeSearchKeyword}
           currentLocation={this.props.currentLocation}
+          closeDropdown={this.props.closeDropdown}
           openNow={this.props.openNow}
           searchInput={this.props.searchInput}
           searchRadius={this.props.searchRadius}
