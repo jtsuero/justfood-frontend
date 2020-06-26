@@ -3,6 +3,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import SearchDistanceButton from './SearchDistanceButton';
 import just_food_logo from './just_food_burger.png';
+import OpenNowButton from './OpenNowButton.js';
+import SearchDistanceButtons from './SearchDistanceButtons';
 
 class MobileSearchBox extends Component {
   constructor() {
@@ -12,55 +14,12 @@ class MobileSearchBox extends Component {
     };
   }
 
-  distanceButtons = () => {
-    let distances = [1, 2, 5, 10];
-    const distanceButtons = distances.map(miles => {
-      return (
-        <SearchDistanceButton
-          miles={miles}
-          onClick={() => {
-            this.props.handleDistanceClick(miles);
-          }}
-          active={this.props.searchRadius === miles}
-          key={miles}
-          source="mobile"
-        />
-      );
-    });
-    return (
-      <div className="mobile-search-distance-container">
-        <div className="mobile-search-distance-buttons">{distanceButtons}</div>
-      </div>
-    );
-  };
-
   handleSearchChange = e => {
     this.props.changeSearchKeyword(e.target.value);
   };
 
   handleLocationChange = e => {
     this.props.changeCurrentLocation(e.target.value);
-  };
-
-  openNowButton = () => {
-    //button will indicate also showing restaurants that are closed
-    let cls = 'mobile-search-open-now';
-    if (this.props.openNow) {
-      cls += ' active';
-    }
-    return (
-      <div
-        className={cls}
-        onClick={() => {
-          this.props.handleOpenNowChange(
-            !this.props.openNow,
-            this.props.searchInput,
-          );
-        }}
-      >
-        Open Now
-      </div>
-    );
   };
 
   searchForm = () => {
@@ -94,8 +53,15 @@ class MobileSearchBox extends Component {
             />
           </div>
           <div className="mobile-search-filters">
-            {this.openNowButton()}
-            {this.distanceButtons()}
+            <OpenNowButton
+              handleOpenNowChange={this.props.handleOpenNowChange}
+              openNow={this.props.openNow}
+            />
+            <SearchDistanceButtons
+              searchRadius={this.props.searchRadius}
+              handleDistanceClick={this.props.handleDistanceClick}
+              closeDropdown={this.props.closeDropdown}
+            />
           </div>
           <div className="mobile-submit-buttons">
             <button

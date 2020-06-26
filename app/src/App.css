@@ -278,30 +278,8 @@
   justfy-content: center;
 }
 
-.mobile-search-distance-container {
-  display: flex;
-  width: 100%;
-  height: auto;
-}
-
 .mobile-search-filters {
   padding: 10px 0;
-}
-
-.mobile-search-distance-buttons {
-  width: 100%;
-  display: flex;
-}
-
-.mobile-search-distance-button {
-  padding: 5px;
-  width: 25%;
-  margin: 1px;
-  border-radius: 5px;
-  border: 1px black solid;
-  background: white;
-  cursor: pointer;
-  text-align: center;
 }
 
 .mobile-search-distance-button.active {
@@ -359,20 +337,6 @@
   position: absolute;
   right: 0;
   top: 2vh;
-}
-
-.mobile-search-open-now {
-  padding: 5px;
-  margin: 1px;
-  width: 100%;
-  border-radius: 5px;
-  background: white;
-  cursor: pointer;
-  text-align: center;
-}
-
-.mobile-search-open-now.active {
-  background: #03989e;
 }
 
 .mobile-searchbox-container {
@@ -536,6 +500,7 @@
   border: 1px black solid;
   background: white;
   cursor: pointer;
+  text-align: center;
 }
 
 .search-distance-button.active {
@@ -548,6 +513,7 @@
   border-radius: 5px;
   background: white;
   cursor: pointer;
+  text-align: center;
 }
 
 .search-open-now.active {
@@ -602,6 +568,26 @@
   .navbar-search {
     display: none;
   }
+
+  .search-dropdown {
+    display: flex;
+    width: 100%;
+    height: auto;
+    position: static;
+    transform: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .search-dropdown-distance {
+    width: 100%;
+    display: flex;
+  }
+
+  .search-distance-button {
+    width: 25%;
+  }
 }
 
 /* media query for mobile phone landscape mode  */
@@ -638,5 +624,25 @@
     width: auto%;
     height: auto;
     max-height: 70%;
+  }
+
+  .search-dropdown {
+    display: flex;
+    width: 100%;
+    height: auto;
+    position: static;
+    transform: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .search-dropdown-distance {
+    width: 100%;
+    display: flex;
+  }
+
+  .search-distance-button {
+    width: 25%;
   }
 }
