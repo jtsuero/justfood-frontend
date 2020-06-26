@@ -1,29 +1,9 @@
 import React, {Component} from 'react';
-import SearchDistanceButton from './SearchDistanceButton';
 import OpenNowButton from './OpenNowButton';
+import SearchDistanceButtons from './SearchDistanceButtons';
 
 class SearchFilters extends Component {
-  dropDownMenu = () => {
-    let distances = [1, 2, 5, 10];
-    const distanceButtons = distances.map(miles => {
-      return (
-        <SearchDistanceButton
-          miles={miles}
-          onClick={() => {
-            this.props.handleDistanceClick(miles);
-            this.props.closeDropdown();
-          }}
-          active={this.props.searchRadius === miles}
-          key={miles}
-        />
-      );
-    });
-    return (
-      <div className="search-dropdown">
-        <div className="search-dropdown-distance">{distanceButtons}</div>
-      </div>
-    );
-  };
+  dropDownMenu = () => {};
 
   render() {
     return (
@@ -38,7 +18,13 @@ class SearchFilters extends Component {
         >
           {this.props.distanceDropdownOpen ? 'Close' : 'Distance'}
         </div>
-        {this.props.distanceDropdownOpen && this.dropDownMenu()}
+        {this.props.distanceDropdownOpen && (
+          <SearchDistanceButtons
+            searchRadius={this.props.searchRadius}
+            handleDistanceClick={this.props.handleDistanceClick}
+            closeDropdown={this.props.closeDropdown}
+          />
+        )}
       </div>
     );
   }
