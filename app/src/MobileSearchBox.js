@@ -23,13 +23,12 @@ class MobileSearchBox extends Component {
           }}
           active={this.props.searchRadius === miles}
           key={miles}
-          source="mobile"
         />
       );
     });
     return (
-      <div className="mobile-search-distance-container">
-        <div className="mobile-search-distance-buttons">{distanceButtons}</div>
+      <div className="search-dropdown">
+        <div className="search-dropdown-distance">{distanceButtons}</div>
       </div>
     );
   };

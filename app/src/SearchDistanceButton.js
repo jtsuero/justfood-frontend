@@ -1,12 +1,7 @@
 import React from 'react';
 
-function SearchDistanceButton({miles, onClick, active, source}) {
-  let cls;
-  if (source === 'mobile') {
-    cls = 'mobile-search-distance-button';
-  } else {
-    cls = 'search-distance-button';
-  }
+function SearchDistanceButton({miles, onClick, active}) {
+  let cls = 'search-distance-button';
   if (active) {
     cls += ' active';
   }
