@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import SearchDistanceButton from './SearchDistanceButton';
 import just_food_logo from './just_food_burger.png';
+import OpenNowButton from './OpenNowButton.js';
 
 class MobileSearchBox extends Component {
   constructor() {
@@ -41,24 +42,6 @@ class MobileSearchBox extends Component {
     this.props.changeCurrentLocation(e.target.value);
   };
 
-  openNowButton = () => {
-    //button will indicate also showing restaurants that are closed
-    let cls = 'search-open-now';
-    if (this.props.openNow) {
-      cls += ' active';
-    }
-    return (
-      <div
-        className={cls}
-        onClick={() => {
-          this.props.handleOpenNowChange(!this.props.openNow);
-        }}
-      >
-        Open Now
-      </div>
-    );
-  };
-
   searchForm = () => {
     return (
       <div className="mobile-search">
@@ -90,7 +73,10 @@ class MobileSearchBox extends Component {
             />
           </div>
           <div className="mobile-search-filters">
-            {this.openNowButton()}
+            <OpenNowButton
+              handleOpenNowChange={this.props.handleOpenNowChange}
+              openNow={this.props.openNow}
+            />
             {this.distanceButtons()}
           </div>
           <div className="mobile-submit-buttons">

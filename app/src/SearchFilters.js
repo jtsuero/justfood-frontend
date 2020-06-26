@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SearchDistanceButton from './SearchDistanceButton';
+import OpenNowButton from './OpenNowButton';
 
 class SearchFilters extends Component {
   dropDownMenu = () => {
@@ -24,28 +25,13 @@ class SearchFilters extends Component {
     );
   };
 
-  openNowButton = () => {
-    //button will indicate also showing restaurants that are closed
-    let cls = 'search-open-now';
-    if (this.props.openNow) {
-      cls += ' active';
-    }
-    return (
-      <div
-        className={cls}
-        onClick={() => {
-          this.props.handleOpenNowChange(!this.props.openNow);
-        }}
-      >
-        Open Now
-      </div>
-    );
-  };
-
   render() {
     return (
       <div className="search-dropdown-container">
-        {this.openNowButton()}
+        <OpenNowButton
+          handleOpenNowChange={this.props.handleOpenNowChange}
+          openNow={this.props.openNow}
+        />
         <div
           className="search-dropdown-button"
           onClick={() => this.props.toggleDropdown()}
