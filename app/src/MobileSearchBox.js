@@ -52,10 +52,7 @@ class MobileSearchBox extends Component {
       <div
         className={cls}
         onClick={() => {
-          this.props.handleOpenNowChange(
-            !this.props.openNow,
-            this.props.searchInput,
-          );
+          this.props.handleOpenNowChange(!this.props.openNow);
         }}
       >
         Open Now
