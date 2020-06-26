@@ -361,20 +361,6 @@
   top: 2vh;
 }
 
-.mobile-search-open-now {
-  padding: 5px;
-  margin: 1px;
-  width: 100%;
-  border-radius: 5px;
-  background: white;
-  cursor: pointer;
-  text-align: center;
-}
-
-.mobile-search-open-now.active {
-  background: #03989e;
-}
-
 .mobile-searchbox-container {
   display: none;
 }
@@ -548,6 +534,7 @@
   border-radius: 5px;
   background: white;
   cursor: pointer;
+  text-align: center;
 }
 
 .search-open-now.active {

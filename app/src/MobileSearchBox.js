@@ -44,7 +44,7 @@ class MobileSearchBox extends Component {
 
   openNowButton = () => {
     //button will indicate also showing restaurants that are closed
-    let cls = 'mobile-search-open-now';
+    let cls = 'search-open-now';
     if (this.props.openNow) {
       cls += ' active';
     }
