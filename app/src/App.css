@@ -348,6 +348,7 @@
   border: 1px #03989e solid;
   height: 2rem;
   padding: 10px;
+  border-radius: 4px;
 }
 
 .mobile-zipbox-container {
@@ -371,6 +372,7 @@
   border: 1px #03989e solid;
   height: 2rem;
   padding: 10px;
+  border-radius: 4px;
 }
 
 .mobile-submit-buttons {
@@ -443,6 +445,7 @@
   height: 2rem;
   padding: 10px;
   padding-right: 40px;
+  border-radius: 4px;
 }
 
 .navbar-zipbox {
@@ -451,6 +454,7 @@
   height: 2rem;
   padding: 10px;
   padding-right: 40px;
+  border-radius: 4px;
 }
 
 .navbar-open-now {
