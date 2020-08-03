@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
-import SearchDistanceButton from './SearchDistanceButton';
 import just_food_logo from './just_food_burger.png';
 import OpenNowButton from './OpenNowButton.js';
 import SearchDistanceButtons from './SearchDistanceButtons';
