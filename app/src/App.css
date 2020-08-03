@@ -116,13 +116,6 @@
   display: flex;
 }
 
-.business-page-phone {
-}
-
-.filler {
-  flex-grow: 10;
-}
-
 .food-page-loading {
   height: 10%;
   width: auto;
@@ -137,7 +130,6 @@
 }
 
 .food-page-images-container {
-  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -145,6 +137,7 @@
   overflow-x: hidden;
   align-items: center;
   align-content: flex-start;
+  justify-content: center;
 }
 
 .food-page-single-image-container {
