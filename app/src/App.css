@@ -38,22 +38,20 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content: flex-start;
-  flex: 1;
+  justify-content: center;
 }
 
 .business-page-photo-row {
-  height: 19vh;
-  border: 1px solid white;
-  max-width: 300px;
+  height: 200px;
+  width: 200px;
+  padding: 2px;
 }
 
 .business-page-image {
-  max-height: 100%;
-  min-width: 100%;
-  vertical-align: bottom;
   height: 100%;
+  width: 100%;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .business-page-google-url {
