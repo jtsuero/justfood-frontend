@@ -57,7 +57,7 @@
 }
 
 .business-page-google-url {
-  width: 15%;
+  width: 25%;
   padding: 10px;
   text-align: center;
   margin: 5px;
@@ -77,7 +77,7 @@
   margin: 5px;
   text-decoration: none;
   color: black;
-  width: 15%;
+  width: 25%;
 }
 
 .business-page-phone-icon {
@@ -94,12 +94,14 @@
   font-size: 2em;
   color: black;
   margin-bottom: 0.5em;
+  text-align: center;
 }
 
 .business-specifics {
   font-size: 1em;
   color: black;
   font-size: 0.8em;
+  text-align: center;
 }
 
 .business-page-business-info {
@@ -114,6 +116,7 @@
 
 .business-page-direction-phone-buttons {
   display: flex;
+  justify-content: center;
 }
 
 .food-page-loading {
@@ -255,7 +258,6 @@
   width: 100%;
   background-color: #ffde59;
   padding: 1.5em 0.5em;
-  justfy-content: center;
 }
 
 .mobile-search-header {
