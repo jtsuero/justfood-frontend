@@ -46,6 +46,7 @@ class NavBar extends Component {
             placeholder="burgers, sushi, food"
             value={this.props.searchInput}
           />
+          <span className="input-break">|</span>
           <input
             type="text"
             onChange={this.handleLocationChange}
