@@ -65,6 +65,7 @@
   width: 25%;
   border-radius: 5px;
   padding: 0.5rem;
+  background: #ccc;
 }
 
 .business-page-phone {
@@ -84,6 +85,7 @@
   width: 25%;
   border-radius: 5px;
   padding: 0.5rem;
+  background: #ccc;
 }
 
 .business-page-phone-icon {
@@ -98,6 +100,8 @@
 
 .restaurant-name {
   font-size: 2em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   color: black;
   margin-bottom: 0.5em;
   text-align: center;
