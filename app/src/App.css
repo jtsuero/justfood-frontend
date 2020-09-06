@@ -610,6 +610,10 @@
     user-select: none;
   }
 
+  .navbar-app-name {
+    font-size: 1.5rem;
+  }
+
   .navbar-search {
     display: none;
   }
