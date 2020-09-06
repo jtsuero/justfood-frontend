@@ -136,6 +136,12 @@
   margin: auto;
 }
 
+.food-page-link-container {
+  margin: 1rem;
+  box-shadow: 0 0 3px grey;
+  border-radius: 5px;
+}
+
 .food-page-loading-container {
   display: flex;
   width: 100vw;
@@ -565,12 +571,6 @@
   .business-page-photo-row {
     max-width: 50%;
     flex-grow: 1;
-  }
-
-  .food-page-link-container {
-    margin: 1rem;
-    box-shadow: 0 0 3px black;
-    border-radius: 5px;
   }
 
   .food-page-single-image-container {
