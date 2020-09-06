@@ -136,11 +136,38 @@
   margin: auto;
 }
 
+.food-page-link-container {
+  margin: 1rem;
+  box-shadow: 0 0 3px grey;
+  border-radius: 5px;
+  max-width: 300px;
+}
+
+.food-page-link-container a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .food-page-loading-container {
   display: flex;
   width: 100vw;
   height: 100vh;
   justify-content: center;
+}
+
+.food-page-detail-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.food-page-detail-name {
+  margin-bottom: 1rem;
 }
 
 .food-page-images-container {
@@ -547,6 +574,9 @@
   .business-page-phone-container {
     width: 50%;
   }
+  .food-page-link-container {
+    max-width: 200px;
+  }
 
   .modal-photo-change-button-right {
     bottom: 0;
@@ -564,8 +594,6 @@
   }
 
   .food-page-single-image-container {
-    max-width: 50%;
-    max-height: 50%;
     height: 200px;
     width: 200px;
   }
@@ -619,6 +647,10 @@
 
   .business-page-phone-container {
     width: 50%;
+  }
+
+  .food-page-link-container {
+    max-width: 200px;
   }
 
   .food-page-single-image-container {

@@ -53,7 +53,7 @@ class FoodPage extends Component {
     const photoCollection = this.state.businessList.map(business => {
       if (!business || !business.photos || !business.photos[1]) return null;
       return (
-        <div className="food-page-single-image-container" key={business.id}>
+        <div className="food-page-link-container" key={business.id}>
           <Link
             to={{
               pathname: `/restaurant/${business.id}`,
@@ -62,11 +62,16 @@ class FoodPage extends Component {
               this.onClickPhoto(business);
             }}
           >
-            <img
-              className="food-page-image"
-              src={business.photos[1]}
-              alt={''}
-            />
+            <div className="food-page-single-image-container">
+              <img
+                className="food-page-image"
+                src={business.photos[1]}
+                alt={''}
+              />
+            </div>
+            <div className="food-page-detail-container">
+              <div className="food-page-detail-name">{business.name}</div>
+            </div>
           </Link>
         </div>
       );
