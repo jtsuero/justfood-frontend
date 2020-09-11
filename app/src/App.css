@@ -162,12 +162,17 @@
 .food-page-detail-container {
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   width: 80%;
 }
 
 .food-page-detail-name {
   margin-bottom: 1rem;
+}
+
+.food-page-detail-distance {
+  margin-bottom: 1rem;
+  color: #03989e;
 }
 
 .food-page-images-container {

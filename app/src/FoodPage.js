@@ -71,6 +71,9 @@ class FoodPage extends Component {
             </div>
             <div className="food-page-detail-container">
               <div className="food-page-detail-name">{business.name}</div>
+              <div className="food-page-detail-distance">
+                {business.distance[0].distance.text}
+              </div>
             </div>
           </Link>
         </div>
